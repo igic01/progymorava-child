@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ProGym Orava – ukážka popupu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --pg-purple: #5c3d81;
+      --pg-purple-deep: #2d1d40;
+      --pg-green: #20ed8c;
+      --pg-green-soft: #59f3ad;
+      --pg-white: #fefffe;
+      --pg-black: #050505;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background: #f8f8f9;
+      color: var(--pg-black);
+      font-family: "Roboto", sans-serif;
+    }
+
+    button,
+    a {
+      font: inherit;
+    }
+
+    /* Small page preview, included only to show the popup in context. */
+    .demo-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(1220px, calc(100% - 40px));
+      min-height: 82px;
+      margin: 0 auto;
+      gap: 24px;
+    }
+
+    .demo-header img {
+      display: block;
+      width: clamp(150px, 18vw, 220px);
+      height: auto;
+    }
+
+    .demo-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 24px;
+    }
+
+    .demo-nav a {
+      color: rgba(5, 5, 5, .78);
+      font-size: .92rem;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .demo-main {
+      padding: 34px clamp(14px, 4vw, 36px) 70px;
+    }
+
+    .demo-hero {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      width: min(1220px, 100%);
+      min-height: min(670px, 72vh);
+      margin: 0 auto;
+      overflow: hidden;
+      isolation: isolate;
+      padding: clamp(24px, 5vw, 54px);
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at 78% 20%, rgba(32, 237, 140, .28), transparent 25%),
+        radial-gradient(circle at 14% 86%, rgba(92, 61, 129, .7), transparent 34%),
+        linear-gradient(135deg, #17131d, #050505 65%);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, .18);
+      color: var(--pg-white);
+    }
+
+    .demo-hero::after {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: .12;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, .22) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .22) 1px, transparent 1px);
+      background-size: 20px 20px;
+      content: "";
+    }
+
+    .demo-hero__copy {
+      max-width: 760px;
+    }
+
+    .demo-hero__eyebrow {
+      margin: 0 0 14px;
+      color: var(--pg-green);
+      font: 700 .76rem/1 "Poppins", sans-serif;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .demo-hero h1 {
+      margin: 0;
+      font: 800 clamp(3.4rem, 9vw, 7rem)/.87 "Poppins", sans-serif;
+      letter-spacing: -.07em;
+      text-transform: uppercase;
+    }
+
+    .demo-hero h1 span {
+      color: var(--pg-green);
+    }
+
+    .demo-open {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      margin-top: 28px;
+      padding: 0 24px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--pg-green);
+      color: var(--pg-black);
+      cursor: pointer;
+      font: 800 .82rem/1 "Poppins", sans-serif;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    /* Popup */
+    .popup-layer {
+      position: fixed;
+      z-index: 1000;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      overflow-y: auto;
+      padding: clamp(14px, 4vw, 40px);
+      background: rgba(5, 5, 5, .72);
+      backdrop-filter: blur(9px);
+      transition: opacity .25s ease, visibility .25s ease;
+    }
+
+    .popup-layer[aria-hidden="true"] {
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .popup {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(300px, .9fr) minmax(360px, 1.1fr);
+      width: min(920px, 100%);
+      max-height: calc(100vh - 40px);
+      overflow: hidden;
+      border: 1px solid rgba(254, 255, 254, .16);
+      border-radius: 34px;
+      background: var(--pg-white);
+      box-shadow: 0 36px 100px rgba(0, 0, 0, .42);
+      transform: translateY(0) scale(1);
+      transition: transform .3s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .popup-layer[aria-hidden="true"] .popup {
+      transform: translateY(18px) scale(.98);
+    }
+
+    .popup__close {
+      position: absolute;
+      z-index: 5;
+      top: 18px;
+      right: 18px;
+      display: inline-grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      border: 1px solid rgba(5, 5, 5, .1);
+      border-radius: 50%;
+      background: rgba(254, 255, 254, .86);
+      color: var(--pg-black);
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, .09);
+      transition: background-color .2s ease, transform .2s ease;
+    }
+
+    .popup__close:hover,
+    .popup__close:focus-visible {
+      background: var(--pg-green);
+      outline: none;
+      transform: rotate(4deg) scale(1.04);
+    }
+
+    .popup__close svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .popup__visual {
+      position: relative;
+      display: grid;
+      min-height: 580px;
+      margin: 0;
+      place-items: center;
+      overflow: hidden;
+      isolation: isolate;
+      padding: 48px 34px;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(32, 237, 140, .32), transparent 28%),
+        radial-gradient(circle at 82% 88%, rgba(122, 58, 234, .48), transparent 34%),
+        linear-gradient(145deg, #17121d 0%, #050505 72%);
+    }
+
+    .popup__visual::before {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      opacity: .14;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, .18) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .18) 1px, transparent 1px);
+      background-size: 18px 18px;
+      content: "";
+    }
+
+    .popup__visual::after {
+      position: absolute;
+      right: -90px;
+      bottom: -90px;
+      width: 250px;
+      height: 250px;
+      border: 1px solid rgba(32, 237, 140, .3);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .phone {
+      position: relative;
+      width: 218px;
+      height: 444px;
+      padding: 9px;
+      border: 2px solid rgba(254, 255, 254, .22);
+      border-radius: 42px;
+      background: #050505;
+      box-shadow: 0 28px 56px rgba(0, 0, 0, .46), 0 0 0 7px rgba(254, 255, 254, .05);
+      transform: rotate(-4deg);
+    }
+
+    .phone__speaker {
+      position: absolute;
+      z-index: 2;
+      top: 17px;
+      left: 50%;
+      width: 62px;
+      height: 17px;
+      border-radius: 99px;
+      background: #050505;
+      transform: translateX(-50%);
+    }
+
+    .phone__screen {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 34px;
+      background: #efedf2;
+    }
+
+    .phone__screen-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .popup__body {
+      display: flex;
+      overflow-y: auto;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(54px, 7vw, 82px) clamp(30px, 6vw, 66px) clamp(38px, 6vw, 64px);
+    }
+
+    .popup__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      align-self: flex-start;
+      gap: 9px;
+      margin: 0 0 18px;
+      color: var(--pg-purple);
+      font: 700 .72rem/1 "Poppins", sans-serif;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+
+    .popup__eyebrow::before {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--pg-green);
+      box-shadow: 0 0 0 5px rgba(32, 237, 140, .14);
+      content: "";
+    }
+
+    .popup__title {
+      max-width: 9ch;
+      margin: 0 0 20px;
+      font: 800 clamp(2.55rem, 5.3vw, 4.3rem)/.9 "Poppins", sans-serif;
+      letter-spacing: -.065em;
+      text-transform: uppercase;
+    }
+
+    .popup__title span {
+      display: block;
+      color: var(--pg-purple);
+    }
+
+    .popup__description {
+      max-width: 42ch;
+      margin: 0 0 30px;
+      color: rgba(5, 5, 5, .65);
+      font-size: 1.04rem;
+      line-height: 1.65;
+    }
+
+    .popup__download {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      align-self: flex-start;
+      min-width: 250px;
+      min-height: 56px;
+      gap: 18px;
+      padding: 5px 7px 5px 24px;
+      border-radius: 999px;
+      background: var(--pg-green);
+      color: var(--pg-black);
+      text-decoration: none;
+      font: 800 .82rem/1 "Poppins", sans-serif;
+      letter-spacing: .075em;
+      text-transform: uppercase;
+      box-shadow: 0 16px 32px rgba(32, 237, 140, .22);
+      transition: background-color .22s ease, transform .22s ease;
+    }
+
+    .popup__download:hover,
+    .popup__download:focus-visible {
+      background: var(--pg-green-soft);
+      outline: none;
+      transform: translateY(-2px);
+    }
+
+    .popup__download-icon {
+      display: inline-grid;
+      flex: 0 0 44px;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--pg-black);
+      color: var(--pg-white);
+    }
+
+    .popup__download-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .popup__availability {
+      margin: 14px 0 0 24px;
+      color: rgba(5, 5, 5, .48);
+      font: 500 .72rem/1.4 "Poppins", sans-serif;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 760px) {
+      .demo-nav {
+        display: none;
+      }
+
+      .popup {
+        grid-template-columns: 1fr;
+        width: 100%;
+        min-width: 0;
+        max-height: calc(100vh - 28px);
+        overflow-y: auto;
+        border-radius: 28px;
+      }
+
+      .popup__visual,
+      .popup__body {
+        min-width: 0;
+      }
+
+      .popup__visual {
+        min-height: 230px;
+        padding: 26px;
+      }
+
+      .phone {
+        width: 158px;
+        height: 310px;
+        margin-top: 88px;
+        border-radius: 32px;
+        transform: rotate(-7deg);
+      }
+
+      .phone__screen {
+        border-radius: 25px;
+      }
+
+      .phone__speaker {
+        top: 13px;
+        width: 48px;
+        height: 13px;
+      }
+
+      .popup__body {
+        overflow: visible;
+        padding: 34px 25px 30px;
+      }
+
+      .popup__title {
+        max-width: 100%;
+        font-size: clamp(2.35rem, 11vw, 3.4rem);
+        overflow-wrap: anywhere;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .popup-layer {
+        padding: 8px;
+      }
+
+      .popup {
+        max-height: calc(100vh - 16px);
+        border-radius: 24px;
+      }
+
+      .popup__close {
+        top: 13px;
+        right: 13px;
+      }
+
+      .popup__visual {
+        min-height: 190px;
+      }
+
+      .phone {
+        margin-top: 118px;
+      }
+
+      .popup__download {
+        width: 100%;
+        min-width: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="demo-header" aria-label="Ukážková hlavička stránky">
+    <img src="assets/images/wide white.svg" alt="ProGym">
+    <nav class="demo-nav" aria-label="Ukážková navigácia">
+      <a href="#">Domov</a>
+      <a href="#">O nás</a>
+      <a href="#">Cenník</a>
+      <a href="#">Služby</a>
+      <a href="#">Kontakt</a>
+    </nav>
+  </header>
+
+  <main class="demo-main">
+    <section class="demo-hero">
+      <div class="demo-hero__copy">
+        <p class="demo-hero__eyebrow">ProGym Orava</p>
+        <h1>Trénuj.<br><span>Napreduj.</span></h1>
+        <button class="demo-open" type="button" data-popup-open>Zobraziť popup</button>
+      </div>
+    </section>
+  </main>
+
+  <div class="popup-layer" data-popup-layer aria-hidden="false">
+    <section class="popup" role="dialog" aria-modal="true" aria-labelledby="app-popup-title" aria-describedby="app-popup-description">
+      <button class="popup__close" type="button" data-popup-close aria-label="Zatvoriť okno">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18"></path>
+        </svg>
+      </button>
+
+      <figure class="popup__visual" aria-label="Ukážka aplikácie ProGym Orava">
+        <div class="phone" aria-hidden="true">
+          <span class="phone__speaker"></span>
+          <div class="phone__screen">
+            <img class="phone__screen-image" src="assets/images/app-popup-screen.svg" alt="Ukážka aplikácie ProGym Orava">
+          </div>
+        </div>
+      </figure>
+
+      <div class="popup__body">
+        <p class="popup__eyebrow">ProGym vo vrecku</p>
+        <h1 class="popup__title" id="app-popup-title">Tvoj tréning.<span>Vždy poruke.</span></h1>
+        <p class="popup__description" id="app-popup-description">
+          Stiahni si aplikáciu ProGym Orava a maj všetko potrebné pre svoj tréning pohodlne vo svojom mobile.
+        </p>
+
+        <a class="popup__download" data-app-download href="https://play.google.com/store/apps/details?id=com.progymorava" target="_blank" rel="noopener noreferrer">
+          <span>Stiahnuť aplikáciu</span>
+          <span class="popup__download-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3v12"></path>
+              <path d="m7 10 5 5 5-5"></path>
+              <path d="M5 21h14"></path>
+            </svg>
+          </span>
+        </a>
+        <p class="popup__availability">Dostupné pre iOS a Android</p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    (() => {
+      const layer = document.querySelector('[data-popup-layer]');
+      const dialog = layer.querySelector('.popup');
+      const closeButton = layer.querySelector('[data-popup-close]');
+      const openButton = document.querySelector('[data-popup-open]');
+      const downloadButton = document.querySelector('[data-app-download]');
+      const appleDownloadUrl = 'https://apps.apple.com/us/app/progym-orava-z%C3%A1kamenn%C3%A9/id6791676566';
+      const googleDownloadUrl = 'https://play.google.com/store/apps/details?id=com.progymorava';
+      let lastFocusedElement = null;
+
+      const isAppleDevice = /iPad|iPhone|iPod|Macintosh/i.test(navigator.userAgent);
+      downloadButton.href = isAppleDevice ? appleDownloadUrl : googleDownloadUrl;
+
+      const openPopup = () => {
+        lastFocusedElement = document.activeElement;
+        layer.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        window.setTimeout(() => closeButton.focus(), 50);
+      };
+
+      const closePopup = () => {
+        layer.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        (lastFocusedElement || openButton).focus();
+      };
+
+      openButton.addEventListener('click', openPopup);
+      closeButton.addEventListener('click', closePopup);
+
+      layer.addEventListener('click', (event) => {
+        if (!dialog.contains(event.target)) {
+          closePopup();
+        }
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && layer.getAttribute('aria-hidden') === 'false') {
+          closePopup();
+        }
+      });
+
+      document.body.style.overflow = 'hidden';
+      window.setTimeout(() => closeButton.focus(), 50);
+    })();
+  </script>
+</body>
+</html>

@@ -250,6 +250,14 @@ get_template_part(
 
 <?php
 get_template_part(
+	'template-parts/shared/app',
+	'popup',
+	array(
+		'post_id' => get_queried_object_id(),
+	)
+);
+
+get_template_part(
 	'template-parts/shared/site',
 	'footer',
 	array(

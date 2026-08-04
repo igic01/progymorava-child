@@ -138,6 +138,28 @@ class Progymorava_Child_Home_Fields {
 		$fields->field( 'motivation_button_url', 'Button URL', 'home_motivation_button_url', 'url', $default_url );
 		$fields->field( 'motivation_hint', 'Hint', 'home_motivation_hint', 'text', 'Your next level starts with one decision' );
 
+		$fields->tab( 'app_popup_tab', 'Popup aplikácie' );
+		$fields->field(
+			'app_popup_enabled',
+			'Zobraziť popup aplikácie',
+			'home_app_popup_enabled',
+			'true_false',
+			1,
+			array(
+				'ui'           => 1,
+				'instructions' => 'Popup sa návštevníkovi zobrazí iba pri prvej návšteve domovskej stránky v danom prehliadači.',
+			)
+		);
+		$fields->field( 'app_popup_phone_image', 'Obrázok obrazovky telefónu', 'home_app_popup_phone_image', 'image', null, array_merge( $image_settings, array( 'instructions' => 'Použite zvislý obrázok alebo snímku obrazovky aplikácie.' ) ) );
+		$fields->field( 'app_popup_eyebrow', 'Malý nadpis', 'home_app_popup_eyebrow', 'text', 'ProGym vo vrecku' );
+		$fields->field( 'app_popup_title_before', 'Prvá časť nadpisu', 'home_app_popup_title_before', 'text', 'Tvoj tréning.' );
+		$fields->field( 'app_popup_title_mark', 'Zvýraznená časť nadpisu', 'home_app_popup_title_mark', 'text', 'Vždy poruke.' );
+		$fields->field( 'app_popup_description', 'Popis', 'home_app_popup_description', 'textarea', 'Stiahni si aplikáciu ProGym Orava a maj všetko potrebné pre svoj tréning pohodlne vo svojom mobile.', $textarea_settings );
+		$fields->field( 'app_popup_button_label', 'Text tlačidla', 'home_app_popup_button_label', 'text', 'Stiahnuť aplikáciu' );
+		$fields->field( 'app_popup_google_url', 'URL aplikácie v Google Play', 'home_app_popup_google_url', 'url', 'https://play.google.com/store/apps/details?id=com.progymorava' );
+		$fields->field( 'app_popup_apple_url', 'URL aplikácie v App Store', 'home_app_popup_apple_url', 'url', 'https://apps.apple.com/us/app/progym-orava-z%C3%A1kamenn%C3%A9/id6791676566' );
+		$fields->field( 'app_popup_availability', 'Text dostupnosti', 'home_app_popup_availability', 'text', 'Dostupné pre iOS a Android' );
+
 		acf_add_local_field_group(
 			array(
 				'key'       => 'group_pg_home_page',

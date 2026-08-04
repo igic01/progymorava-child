@@ -21,6 +21,11 @@ class Progymorava_Child_Assets {
 		$main_stylesheet = '/assets/css/main.css';
 		wp_enqueue_style( 'progymorava-main', get_stylesheet_directory_uri() . $main_stylesheet, array(), self::version( $main_stylesheet ) );
 
+		$popup_stylesheet = '/assets/css/components/app-popup.css';
+		$popup_script     = '/assets/js/components/app-popup.js';
+		wp_enqueue_style( 'progymorava-app-popup', get_stylesheet_directory_uri() . $popup_stylesheet, array( 'progymorava-main' ), self::version( $popup_stylesheet ) );
+		wp_enqueue_script( 'progymorava-app-popup', get_stylesheet_directory_uri() . $popup_script, array(), self::version( $popup_script ), true );
+
 		if ( is_singular( 'post' ) ) {
 			$stylesheet = '/assets/css/templates/single.css';
 			wp_enqueue_style( 'progymorava-single-event', get_stylesheet_directory_uri() . $stylesheet, array( 'progymorava-main' ), self::version( $stylesheet ) );

@@ -307,6 +307,12 @@ body.pg-home .elementor-element-226dd84 {
   transition: color .2s ease;
 }
 
+.pg-footer__phone-hours {
+  color: rgba(254, 255, 254, .55);
+  font-size: .8rem;
+  line-height: 1.4;
+}
+
 .pg-footer__contact a:hover,
 .pg-footer__contact a:focus-visible,
 .pg-footer__column a:hover,

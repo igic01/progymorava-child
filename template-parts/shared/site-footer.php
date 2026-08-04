@@ -67,8 +67,8 @@ $theme_images_url     = get_stylesheet_directory_uri() . '/assets/images';
 		<?php if ( $include_follow ) : ?>
 			<nav class="pg-footer__column" aria-label="Sledujte nás">
 				<h2>Sledujte nás</h2>
-				<a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
-				<a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+				<a href="https://www.facebook.com/progymorava/?locale=sk_SK" target="_blank" rel="noopener noreferrer">Facebook</a>
+				<a href="https://www.instagram.com/PROGYM_ORAVA/" target="_blank" rel="noopener noreferrer">Instagram</a>
 				<a href="<?php echo esc_url( home_url( '/kontakt/' ) ); ?>">Hlavná ulica 1587/99, Zákamenné</a>
 			</nav>
 		<?php endif; ?>

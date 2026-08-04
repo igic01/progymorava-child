@@ -1,0 +1,427 @@
+.pg-calc {
+  overflow: hidden;
+}
+
+.pg-calc *,
+.pg-calc *::before,
+.pg-calc *::after {
+  box-sizing: border-box;
+}
+
+.pg-calc__hero {
+  padding: clamp(34px, 5vw, 58px) clamp(18px, 4vw, 36px) 70px;
+  color: var(--pg-white);
+}
+
+.pg-calc__hero-inner {
+  position: relative;
+  isolation: isolate;
+  width: min(1220px, 100%);
+  min-height: clamp(310px, 40vw, 460px);
+  margin: 0 auto;
+  padding: clamp(25px, 5vw, 54px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  border-radius: 34px;
+  background: radial-gradient(circle at 84% 26%, rgba(32, 237, 140, .3), transparent 19%), linear-gradient(115deg, rgba(5, 5, 5, .9), rgba(38, 25, 51, .88) 55%, rgba(92, 61, 129, .84)), var(--pg-calc-hero-image) center / cover;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, .18);
+}
+
+.pg-calc__hero-inner::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  opacity: .22;
+  background-image: linear-gradient(rgba(255, 255, 255, .2) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .2) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+.pg-calc__eyebrow {
+  margin: 0 0 13px;
+  color: var(--pg-green);
+  font: 700 .68rem/1 "Poppins", sans-serif;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.pg-calc h1 {
+  max-width: 720px;
+  margin: 0;
+  color: var(--pg-white);
+  font: 800 clamp(2.25rem, 6vw, 4.8rem)/.95 "Poppins", sans-serif;
+  letter-spacing: -.065em;
+}
+
+.pg-calc__hero-inner > p:last-child {
+  max-width: 560px;
+  margin: 20px 0 0;
+  color: rgba(254, 255, 254, .8);
+  line-height: 1.6;
+}
+
+.pg-calc__panel {
+  position: relative;
+  z-index: 1;
+  width: min(1220px, calc(100% - 40px));
+  max-width: calc(100% - 40px);
+  margin: -35px auto 70px;
+  padding: clamp(24px, 4vw, 42px);
+  border: 1px solid rgba(5, 5, 5, .08);
+  border-radius: 26px;
+  background: var(--pg-white);
+  box-shadow: 0 22px 54px rgba(5, 5, 5, .12);
+}
+
+.pg-calc__intro {
+  margin: 0 0 27px;
+  color: rgba(5, 5, 5, .64);
+  font-size: .95rem;
+  line-height: 1.55;
+}
+
+.pg-calc__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(310px, .85fr);
+  gap: clamp(24px, 3vw, 42px);
+  align-items: start;
+}
+
+.pg-calc__primary,
+.pg-calc__booking {
+  min-width: 0;
+}
+
+.pg-calc__rates {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.pg-calc__rate {
+  min-height: 138px;
+  padding: 20px;
+  border: 1px solid rgba(5, 5, 5, .11);
+  border-radius: 18px;
+  background: #fafafa;
+}
+
+.pg-calc__rate--prime {
+  border-color: var(--pg-purple);
+  background: rgba(92, 61, 129, .06);
+}
+
+.pg-calc__tag {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: rgba(5, 5, 5, .07);
+  color: rgba(5, 5, 5, .62);
+  font: 700 .62rem/1 "Poppins", sans-serif;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.pg-calc__rate--prime .pg-calc__tag {
+  background: var(--pg-purple);
+  color: var(--pg-white);
+}
+
+.pg-calc__rate-price {
+  font: 800 1.85rem/1 "Poppins", sans-serif;
+  letter-spacing: -.055em;
+}
+
+.pg-calc__rate-price span {
+  color: rgba(5, 5, 5, .5);
+  font: 400 .82rem/1 "Roboto", sans-serif;
+  letter-spacing: 0;
+}
+
+.pg-calc__rate p {
+  margin: 10px 0 0;
+  color: rgba(5, 5, 5, .57);
+  font-size: .78rem;
+  line-height: 1.45;
+}
+
+.pg-calc__discounts {
+  margin-top: 33px;
+}
+
+.pg-calc h2 {
+  margin: 0 0 13px;
+  color: var(--pg-black);
+  font: 700 .7rem/1 "Poppins", sans-serif;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.pg-calc__table-wrap {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1px solid rgba(5, 5, 5, .1);
+  border-radius: 16px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pg-calc__table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+  font-size: .84rem;
+}
+
+.pg-calc__table th {
+  padding: 13px 16px;
+  border-bottom: 1px solid rgba(5, 5, 5, .1);
+  background: #fafafa;
+  color: rgba(5, 5, 5, .48);
+  font: 700 .63rem/1 "Poppins", sans-serif;
+  letter-spacing: .08em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.pg-calc__table td {
+  padding: 13px 16px;
+  border-bottom: 1px solid rgba(5, 5, 5, .08);
+}
+
+.pg-calc__table tr:last-child td {
+  border-bottom: 0;
+}
+
+.pg-calc__table .is-active {
+  background: rgba(32, 237, 140, .19);
+}
+
+.pg-calc__table .is-active td:first-child,
+.pg-calc__discount {
+  font-weight: 700;
+}
+
+.pg-calc__discount {
+  color: var(--pg-purple);
+}
+
+.pg-calc__short-rate {
+  color: #9a3d27;
+  font-weight: 700;
+}
+
+.pg-calc__fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.pg-calc__booking label {
+  display: block;
+  color: rgba(5, 5, 5, .6);
+  font-size: .78rem;
+  font-weight: 700;
+}
+
+.pg-calc__booking input {
+  width: 100%;
+  height: 50px;
+  margin-top: 7px;
+  padding: 0 13px;
+  border: 1px solid rgba(5, 5, 5, .16);
+  border-radius: 11px;
+  background: var(--pg-white);
+  color: var(--pg-black);
+  font: 700 1rem/1 "Roboto", sans-serif;
+  outline: none;
+}
+
+.pg-calc__booking input:focus {
+  border-color: var(--pg-purple);
+  box-shadow: 0 0 0 3px rgba(92, 61, 129, .12);
+}
+
+.pg-calc__tier {
+  margin-top: 20px;
+  padding: 15px 16px;
+  border-radius: 14px;
+  background: #f5f3f7;
+}
+
+.pg-calc__tier div {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(5, 5, 5, .09);
+  color: rgba(5, 5, 5, .62);
+  font-size: .79rem;
+}
+
+.pg-calc__tier div:last-child {
+  display: block;
+  border: 0;
+}
+
+.pg-calc__tier strong {
+  color: var(--pg-black);
+}
+
+.pg-calc__summary {
+  margin-top: 18px;
+  padding: 23px;
+  border-radius: 19px;
+  background: #080809;
+  color: var(--pg-white);
+}
+
+.pg-calc__summary > p {
+  margin: 0 0 16px;
+  color: rgba(254, 255, 254, .56);
+  font: 700 .67rem/1 "Poppins", sans-serif;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+
+.pg-calc__summary > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(254, 255, 254, .13);
+  color: rgba(254, 255, 254, .63);
+  font-size: .86rem;
+}
+
+.pg-calc__summary strong {
+  color: var(--pg-white);
+  white-space: nowrap;
+}
+
+.pg-calc__summary .pg-calc__saving {
+  color: var(--pg-green);
+}
+
+.pg-calc__summary .pg-calc__summary-total {
+  align-items: flex-end;
+  margin-top: 20px;
+  padding: 0;
+  border: 0;
+}
+
+.pg-calc__summary-total span {
+  color: rgba(254, 255, 254, .62);
+  font-size: .8rem;
+}
+
+.pg-calc__summary .pg-calc__summary-total strong {
+  color: var(--pg-green);
+  font: 800 2rem/1 "Poppins", sans-serif;
+  letter-spacing: -.06em;
+}
+
+@media (max-width: 980px) {
+  .pg-calc__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .pg-calc__booking {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, .9fr);
+    gap: 24px;
+    margin-top: 33px;
+  }
+
+  .pg-calc__summary {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .pg-calc__hero {
+    padding-inline: 14px;
+  }
+
+  .pg-calc__hero-inner,
+  .pg-calc__panel {
+    width: calc(100% - 28px);
+    max-width: calc(100% - 28px);
+  }
+
+  .pg-calc__hero-inner {
+    min-height: 355px;
+    border-radius: 26px;
+  }
+
+  .pg-calc__panel {
+    margin-top: -28px;
+    padding: 22px;
+    border-radius: 20px;
+  }
+
+  .pg-calc__rates,
+  .pg-calc__booking {
+    grid-template-columns: 1fr;
+  }
+
+  .pg-calc__summary {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pg-calc__hero {
+    padding-top: 22px;
+    padding-bottom: 54px;
+  }
+
+  .pg-calc__hero-inner {
+    min-height: 310px;
+    padding: 25px;
+  }
+
+  .pg-calc h1 {
+    font-size: clamp(2.15rem, 12vw, 3.25rem);
+  }
+
+  .pg-calc__hero-inner > p:last-child {
+    margin-top: 15px;
+    font-size: .9rem;
+  }
+
+  .pg-calc__panel {
+    padding: 20px 16px;
+  }
+
+  .pg-calc__rate {
+    min-height: 0;
+    padding: 18px;
+  }
+
+  .pg-calc__table {
+    min-width: 520px;
+  }
+
+  .pg-calc__table th,
+  .pg-calc__table td {
+    padding: 12px 13px;
+  }
+
+  .pg-calc__summary {
+    padding: 20px;
+  }
+
+  .pg-calc__summary .pg-calc__summary-total strong {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 410px) {
+  .pg-calc__fields {
+    grid-template-columns: 1fr;
+  }
+}

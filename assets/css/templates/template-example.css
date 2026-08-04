@@ -1,0 +1,19 @@
+/**
+ * Styles loaded only when templates/template-example.php is active.
+ */
+
+.pg-example {
+	padding-block: clamp(48px, 8vw, 96px);
+}
+
+.pg-example__title {
+	margin: 0 0 24px;
+	color: var(--pg-color-purple);
+	font-size: clamp(2.5rem, 7vw, 5rem);
+	line-height: 1;
+}
+
+.pg-example__content {
+	font-size: 1.125rem;
+	line-height: 1.7;
+}

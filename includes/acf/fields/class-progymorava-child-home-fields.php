@@ -1,0 +1,138 @@
+<?php
+/**
+ * Home page ACF field registration.
+ *
+ * @package Progymorava_Child
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+/**
+ * Registers the fields used by the ProGym Home page template.
+ */
+class Progymorava_Child_Home_Fields {
+	/**
+	 * Register ACF hooks.
+	 *
+	 * @return void
+	 */
+	public static function init() {
+		add_action( 'acf/init', array( __CLASS__, 'register_fields' ) );
+	}
+
+	/**
+	 * Register the Home page field group locally.
+	 *
+	 * @return void
+	 */
+	public static function register_fields() {
+		if ( ! function_exists( 'acf_add_local_field_group' ) ) {
+			return;
+		}
+
+		$fields               = new Progymorava_Child_Acf_Field_Builder( 'field_pg_home_' );
+		$image_settings       = array(
+			'return_format' => 'array',
+			'preview_size'  => 'medium',
+			'library'       => 'all',
+		);
+		$placeholder_image_id = progymorava_child_home_placeholder_image_id();
+		$textarea_settings    = array(
+			'rows'      => 3,
+			'new_lines' => '',
+		);
+		$default_url          = 'https://www.google.com/';
+
+		$fields->tab( 'hero_tab', 'Hero' );
+		$fields->field( 'hero_hide_section', 'Hide this section', 'home_hero_hide_section', 'true_false', 0, array( 'ui' => 1 ) );
+		$fields->field( 'hero_image', 'Hero image', 'home_hero_image', 'image', $placeholder_image_id, $image_settings );
+		$fields->field( 'hero_badge', 'Badge', 'home_hero_badge', 'text', 'Open 24/7' );
+		$fields->field( 'hero_headline', 'Hero headline', 'home_hero_headline', 'textarea', "Inside\nand\nout.", array_merge( $textarea_settings, array( 'rows' => 3, 'instructions' => 'Enter one line per row. The final line keeps the green accent.' ) ) );
+		$fields->field( 'hero_summary', 'Summary', 'home_hero_summary', 'textarea', 'We build stronger bodies with focused coaching, premium equipment, and a high-performance space designed to keep your training consistent.', $textarea_settings );
+		$fields->field( 'hero_action_label', 'Action label', 'home_hero_action_label', 'text', 'Start now' );
+		$fields->field( 'hero_action_url', 'Action URL', 'home_hero_action_url', 'url', $default_url );
+
+		$fields->tab( 'training_tab', 'Training' );
+		$fields->field( 'training_hide_section', 'Hide this section', 'home_training_hide_section', 'true_false', 0, array( 'ui' => 1 ) );
+		$fields->field( 'training_eyebrow', 'Section heading', 'home_training_eyebrow', 'text', 'Trainings' );
+		$fields->field( 'training_link_label', 'Section link label', 'home_training_link_label', 'text', 'See all' );
+		$fields->field( 'training_link_url', 'Section link URL', 'home_training_link_url', 'url', $default_url );
+		$fields->field( 'training_card_one_title', 'First card title', 'home_training_card_one_title', 'text', 'Personal training' );
+		$fields->field( 'training_card_one_url', 'First card URL', 'home_training_card_one_url', 'url', $default_url );
+		$fields->field( 'training_card_one_image', 'First card image', 'home_training_card_one_image', 'image', $placeholder_image_id, $image_settings );
+		$fields->field( 'training_card_two_title', 'Second card title', 'home_training_card_two_title', 'text', 'Group fitness classes' );
+		$fields->field( 'training_card_two_url', 'Second card URL', 'home_training_card_two_url', 'url', $default_url );
+		$fields->field( 'training_card_two_image', 'Second card image', 'home_training_card_two_image', 'image', $placeholder_image_id, $image_settings );
+
+		$fields->tab( 'promo_tab', 'Promotion' );
+		$fields->field( 'promo_hide_section', 'Hide this section', 'home_promo_hide_section', 'true_false', 0, array( 'ui' => 1 ) );
+		$fields->field( 'promo_eyebrow', 'Eyebrow', 'home_promo_eyebrow', 'text', 'Limited offer' );
+		$fields->field( 'promo_title', 'Title', 'home_promo_title', 'text', 'Three months. More momentum.' );
+		$fields->field( 'promo_text', 'Description', 'home_promo_text', 'textarea', 'Start your routine with a special three-month membership offer and give your progress time to build.', $textarea_settings );
+		$fields->field( 'promo_price_label', 'Price label', 'home_promo_price_label', 'text', 'Three-month membership' );
+		$fields->field( 'promo_price', 'Promotional price', 'home_promo_price', 'text', '90€' );
+		$fields->field( 'promo_regular_label', 'Regular price label', 'home_promo_regular_label', 'text', 'Regularly' );
+		$fields->field( 'promo_regular_price', 'Regular price', 'home_promo_regular_price', 'text', '115€' );
+		$fields->field( 'promo_action_label', 'Action label', 'home_promo_action_label', 'text', 'View price list' );
+		$fields->field( 'promo_action_url', 'Action URL', 'home_promo_action_url', 'url', $default_url );
+
+		$fields->tab( 'why_tab', 'Why us' );
+		$fields->field( 'why_hide_section', 'Hide this section', 'home_why_hide_section', 'true_false', 0, array( 'ui' => 1 ) );
+		$fields->field( 'why_eyebrow', 'Eyebrow', 'home_why_eyebrow', 'text', 'Why us' );
+		$fields->field( 'why_title_before', 'Title first part', 'home_why_title_before', 'text', 'Train with' );
+		$fields->field( 'why_title_mark', 'Title highlighted part', 'home_why_title_mark', 'text', 'purpose' );
+		$fields->field( 'why_lead', 'Lead text', 'home_why_lead', 'textarea', 'Built for people who want consistency, expert guidance, and a gym environment that supports real progress every day of the week.', $textarea_settings );
+		$fields->field( 'why_image', 'Why us image', 'home_why_image', 'image', $placeholder_image_id, $image_settings );
+		$fields->field( 'why_item_one_icon', 'First item icon', 'home_why_item_one_icon', 'text', '24' );
+		$fields->field( 'why_item_one_title', 'First item title', 'home_why_item_one_title', 'text', '24/7 Access' );
+		$fields->field( 'why_item_one_text', 'First item text', 'home_why_item_one_text', 'textarea', 'Train early, late, or between shifts with round-the-clock entry that keeps your routine under your control.', $textarea_settings );
+		$fields->field( 'why_item_two_icon', 'Second item icon', 'home_why_item_two_icon', 'text', 'EQ' );
+		$fields->field( 'why_item_two_title', 'Second item title', 'home_why_item_two_title', 'text', 'Modern Equipment' );
+		$fields->field( 'why_item_two_text', 'Second item text', 'home_why_item_two_text', 'textarea', 'Use reliable machines, quality free weights, and performance-focused training stations built for serious work.', $textarea_settings );
+		$fields->field( 'why_item_three_icon', 'Third item icon', 'home_why_item_three_icon', 'text', 'CE' );
+		$fields->field( 'why_item_three_title', 'Third item title', 'home_why_item_three_title', 'text', 'Certified Experts' );
+		$fields->field( 'why_item_three_text', 'Third item text', 'home_why_item_three_text', 'textarea', 'Work with experienced coaches who know technique, progression, and how to turn effort into sustainable results.', $textarea_settings );
+
+		$fields->tab( 'motivation_tab', 'Motivation' );
+		$fields->field( 'motivation_hide_section', 'Hide this section', 'home_motivation_hide_section', 'true_false', 0, array( 'ui' => 1 ) );
+		$fields->field( 'motivation_image', 'Motivation image', 'home_motivation_image', 'image', $placeholder_image_id, $image_settings );
+		$fields->field( 'motivation_eyebrow', 'Eyebrow', 'home_motivation_eyebrow', 'text', 'Stay consistent' );
+		$fields->field( 'motivation_quote_before', 'Quote first part', 'home_motivation_quote_before', 'text', 'Strong habits.' );
+		$fields->field( 'motivation_quote_mark', 'Quote highlighted part', 'home_motivation_quote_mark', 'text', 'Stronger you.' );
+		$fields->field( 'motivation_text', 'Text', 'home_motivation_text', 'textarea', 'Progress is not built in one perfect day. It is built by showing up again, training with intent, and choosing not to stop when it gets difficult.', $textarea_settings );
+		$fields->field( 'motivation_button_label', 'Button label', 'home_motivation_button_label', 'text', 'Register now' );
+		$fields->field( 'motivation_button_url', 'Button URL', 'home_motivation_button_url', 'url', $default_url );
+		$fields->field( 'motivation_hint', 'Hint', 'home_motivation_hint', 'text', 'Your next level starts with one decision' );
+
+		acf_add_local_field_group(
+			array(
+				'key'       => 'group_pg_home_page',
+				'title'     => 'Obsah domovskej stránky ProGym',
+				'fields'    => $fields->fields(),
+				'location'  => array(
+					array(
+						array(
+							'param'    => 'page_template',
+							'operator' => '==',
+							'value'    => 'templates/template-home.php',
+						),
+					),
+					array(
+						array(
+							'param'    => 'page_template',
+							'operator' => '==',
+							'value'    => 'template-home.php',
+						),
+					),
+				),
+				'position'        => 'acf_after_title',
+				'label_placement' => 'top',
+				'menu_order'      => 0,
+				'active'          => true,
+				'description'     => 'Tieto polia sa registrujú automaticky a zobrazia sa pod názvom stránok používajúcich šablónu ProGym Home.',
+			)
+		);
+	}
+}
+
+Progymorava_Child_Home_Fields::init();

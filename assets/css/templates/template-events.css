@@ -1,0 +1,238 @@
+.pg-events {
+    overflow: hidden;
+    padding: clamp(56px, 8vw, 108px) clamp(18px, 4vw, 36px) clamp(76px, 10vw, 128px);
+}
+
+.pg-events *,
+.pg-events *::before,
+.pg-events *::after {
+    box-sizing: border-box;
+}
+
+.pg-events__shell {
+    width: min(1220px, 100%);
+    margin: 0 auto;
+}
+
+.pg-events__intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(250px, 390px);
+    gap: 24px clamp(30px, 8vw, 120px);
+    align-items: end;
+    margin-bottom: clamp(42px, 7vw, 82px);
+}
+
+.pg-events__eyebrow {
+    grid-column: 1 / -1;
+    margin: 0;
+    color: var(--pg-purple);
+    font: 700 .76rem/1 "Poppins", sans-serif;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+}
+
+.pg-events__title {
+    margin: 0;
+    font: 800 clamp(3.2rem, 8vw, 6.6rem)/.87 "Poppins", sans-serif;
+    letter-spacing: -.05em;
+    text-transform: uppercase;
+}
+
+.pg-events__title span {
+    color: var(--pg-green);
+}
+
+.pg-events__list {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(50px, 8vw, 98px);
+}
+
+.pg-event-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(315px, .95fr);
+    grid-template-areas: "gallery content";
+    gap: clamp(28px, 5vw, 70px);
+    align-items: center;
+}
+
+.pg-event-card--reverse {
+    grid-template-areas: "content gallery";
+}
+
+.pg-event-card__gallery {
+    grid-area: gallery;
+    display: flex;
+    min-height: clamp(350px, 43vw, 525px);
+    overflow: hidden;
+    border-radius: 34px;
+    background: var(--pg-white);
+    box-shadow: 0 26px 60px rgba(0, 0, 0, .13);
+}
+
+.pg-event-card__gallery img {
+    flex: 1 1 0;
+    width: 0;
+    min-width: 0;
+    height: auto;
+    object-fit: cover;
+    filter: saturate(.85);
+    transition: transform .45s ease, filter .45s ease;
+}
+
+.pg-event-card:hover .pg-event-card__gallery img {
+    filter: saturate(1);
+    transform: scale(1.035);
+}
+
+.pg-event-card__content {
+    position: relative;
+    grid-area: content;
+    isolation: isolate;
+    padding: clamp(8px, 1vw, 14px) 0;
+}
+
+.pg-event-card__year {
+    position: absolute;
+    z-index: 0;
+    top: -.55em;
+    left: clamp(-16px, -2vw, -4px);
+    color: rgba(92, 61, 129, .1);
+    font: 800 clamp(5rem, 10vw, 8.3rem)/1 "Poppins", sans-serif;
+    letter-spacing: -.1em;
+}
+
+.pg-event-card__content> :not(.pg-event-card__year) {
+    position: relative;
+    z-index: 1;
+}
+
+.pg-event-card__label {
+    margin: 0 0 12px;
+    color: var(--pg-purple);
+    font: 700 .74rem/1 "Poppins", sans-serif;
+    letter-spacing: .17em;
+    text-transform: uppercase;
+}
+
+.pg-event-card h2 {
+    max-width: 10ch;
+    margin: 0 0 18px;
+    font: 800 clamp(2.1rem, 4.3vw, 4rem)/.92 "Poppins", sans-serif;
+    letter-spacing: -.04em;
+    text-transform: uppercase;
+}
+
+.pg-event-card__content>p:not(.pg-event-card__label):not(.pg-event-card__impact) {
+    max-width: 42ch;
+    margin: 0;
+    color: rgba(5, 5, 5, .68);
+    font-size: clamp(1rem, 1.45vw, 1.08rem);
+    line-height: 1.62;
+}
+
+.pg-event-card__impact {
+    max-width: 39ch;
+    margin: 18px 0 0;
+    padding-left: 15px;
+    border-left: 3px solid var(--pg-green);
+    color: rgba(5, 5, 5, .84);
+    font: 600 .98rem/1.55 "Roboto", sans-serif;
+}
+
+.pg-event-card__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.pg-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+    min-height: 50px;
+    padding: 0 20px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font: 800 .75rem/1 "Poppins", sans-serif;
+    letter-spacing: .09em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: transform .24s ease, background-color .24s ease, border-color .24s ease;
+}
+
+.pg-button:hover,
+.pg-button:focus-visible {
+    outline: 0;
+    transform: translateY(-2px);
+}
+
+.pg-button--check {
+    border-color: rgba(5, 5, 5, .17);
+    background: rgba(254, 255, 254, .66);
+    color: var(--pg-black);
+}
+
+.pg-button--check:hover,
+.pg-button--check:focus-visible {
+    border-color: var(--pg-purple);
+    color: var(--pg-purple);
+}
+
+@media (max-width: 760px) {
+    .pg-events {
+        padding-inline: 14px;
+    }
+
+    .pg-events__intro {
+        display: block;
+    }
+
+    .pg-events__eyebrow {
+        margin-bottom: 15px;
+    }
+
+    .pg-event-card,
+    .pg-event-card--reverse {
+        grid-template-columns: 1fr;
+        grid-template-areas: "gallery" "content";
+        gap: 24px;
+    }
+
+    .pg-event-card__year {
+        top: -.23em;
+        right: -8px;
+        left: auto;
+        font-size: clamp(5.5rem, 24vw, 8rem);
+    }
+
+    .pg-event-card__gallery {
+        min-height: clamp(300px, 88vw, 480px);
+        border-radius: 27px;
+    }
+
+    .pg-event-card h2 {
+        max-width: 12ch;
+    }
+}
+
+@media (max-width: 440px) {
+    .pg-event-card__gallery {
+        min-height: 310px;
+        padding: 4px;
+        gap: 4px;
+        border-radius: 22px;
+    }
+
+    .pg-event-card h2 {
+        font-size: 2.15rem;
+    }
+
+    .pg-button {
+        flex: 1 1 auto;
+        padding-inline: 15px;
+    }
+}

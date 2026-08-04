@@ -1,0 +1,124 @@
+/* Services page: all component styles are scoped so they do not affect other templates. */
+.pg-coaches,
+.pg-nutrition,
+.pg-physio,
+.pg-journey,
+.pg-prices-cta { padding: 0 clamp(18px, 4vw, 36px) clamp(72px, 9vw, 116px); }
+
+.pg-coaches { padding-top: clamp(56px, 8vw, 104px); }
+.pg-coaches *, .pg-coaches *::before, .pg-coaches *::after,
+.pg-nutrition *, .pg-nutrition *::before, .pg-nutrition *::after,
+.pg-physio *, .pg-physio *::before, .pg-physio *::after,
+.pg-journey *, .pg-journey *::before, .pg-journey *::after,
+.pg-prices-cta *, .pg-prices-cta *::before, .pg-prices-cta *::after,
+.pg-coach-modal * { box-sizing: border-box; }
+
+.pg-coaches__shell, .pg-physio__shell, .pg-journey__shell, .pg-prices-cta__shell { width: min(1220px, 100%); margin: 0 auto; }
+.pg-coaches__intro, .pg-physio__intro, .pg-journey__intro { max-width: 680px; margin-bottom: clamp(28px, 4vw, 46px); }
+.pg-coaches__intro { display: flex; flex-direction: column; gap: 14px; }
+.pg-coaches__eyebrow, .pg-physio__eyebrow, .pg-journey__eyebrow, .pg-coach-modal__eyebrow { margin: 0; color: var(--pg-purple); font: 700 .76rem/1 "Poppins", sans-serif; letter-spacing: .18em; text-transform: uppercase; }
+.pg-coaches__title, .pg-physio__intro h2, .pg-journey__intro h2 { margin: 0; font: 800 clamp(3rem, 7vw, 6rem)/.86 "Poppins", sans-serif; letter-spacing: -.07em; text-transform: uppercase; }
+.pg-coaches__title span, .pg-physio__intro h2 span, .pg-journey__intro h2 span { color: var(--pg-purple); }
+.pg-coaches__lead, .pg-physio__intro > p:not(.pg-physio__eyebrow), .pg-journey__intro > p:not(.pg-journey__eyebrow) { max-width: 58ch; margin: 0; color: rgba(5,5,5,.66); font-size: clamp(1rem, 1.45vw, 1.08rem); line-height: 1.65; }
+
+.pg-coaches__button, .pg-nutrition__button, .pg-prices-cta__button { display: inline-flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 22px; border-radius: 999px; color: var(--pg-white); font: 800 .78rem/1 "Poppins", sans-serif; letter-spacing: .1em; text-decoration: none; text-transform: uppercase; transition: transform .22s ease, background-color .22s ease; }
+.pg-coaches__button { align-self: flex-start; margin-top: 10px; background: var(--pg-purple); }
+.pg-coaches__button:hover, .pg-coaches__button:focus-visible, .pg-nutrition__button:hover, .pg-nutrition__button:focus-visible { background: var(--pg-green); color: var(--pg-black); outline: 0; transform: translateY(-3px); }
+
+.pg-coaches__list { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+.pg-coach-card { position: relative; min-height: clamp(330px, 37vw, 470px); padding: 0; overflow: hidden; isolation: isolate; border: 0; border-radius: 26px; background: #151518; color: var(--pg-white); cursor: pointer; text-align: left; box-shadow: 0 18px 40px rgba(0,0,0,.13); }
+.pg-coach-card > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .45s ease; }
+.pg-coach-card__shade, .pg-physio__shade { position: absolute; z-index: 1; inset: 0; background: linear-gradient(180deg, rgba(5,5,5,.06) 20%, rgba(5,5,5,.84)); }
+.pg-coach-card__number { position: absolute; z-index: 2; top: 18px; right: 18px; font: 700 .74rem/1 "Poppins", sans-serif; letter-spacing: .14em; }
+.pg-coach-card__content { position: absolute; z-index: 2; right: 20px; bottom: 20px; left: 20px; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+.pg-coach-card__name { font: 800 clamp(1.35rem, 2.3vw, 2rem)/.94 "Poppins", sans-serif; letter-spacing: -.05em; text-transform: uppercase; }
+.pg-coach-card__role { color: rgba(254,255,254,.73); font-size: .85rem; line-height: 1.35; }
+.pg-coach-card__more { display: inline-flex; gap: 8px; margin-top: 12px; color: var(--pg-green); font: 700 .72rem/1 "Poppins", sans-serif; letter-spacing: .1em; text-transform: uppercase; opacity: 0; transform: translateY(8px); transition: opacity .24s ease, transform .24s ease; }
+.pg-coach-card:hover > img, .pg-coach-card:focus-visible > img { transform: scale(1.06); }
+.pg-coach-card:hover .pg-coach-card__more, .pg-coach-card:focus-visible .pg-coach-card__more { opacity: 1; transform: translateY(0); }
+.pg-coach-card:focus-visible { outline: 3px solid var(--pg-green); outline-offset: 4px; }
+
+.pg-nutrition__shell { display: grid; grid-template-columns: .82fr 1.18fr; align-items: stretch; width: min(1220px, 100%); margin: 0 auto; overflow: hidden; border: 1px solid rgba(5,5,5,.09); border-radius: 34px; background: var(--pg-white); box-shadow: 0 22px 55px rgba(0,0,0,.08); }
+.pg-nutrition__photo { position: relative; min-height: 650px; background: #171719; }
+.pg-nutrition__photo::after { position: absolute; inset: 0; content: ""; background: linear-gradient(180deg, rgba(92,61,129,.04), rgba(5,5,5,.28)); }
+.pg-nutrition__photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.pg-nutrition__content { padding: clamp(32px, 6vw, 72px); }
+.pg-nutrition__eyebrow { margin: 0 0 14px; color: var(--pg-purple); font: 700 .76rem/1 "Poppins", sans-serif; letter-spacing: .18em; text-transform: uppercase; }
+.pg-nutrition h2 { max-width: 8ch; margin: 0 0 30px; font: 800 clamp(2.6rem, 5vw, 4.9rem)/.9 "Poppins", sans-serif; letter-spacing: -.06em; text-transform: uppercase; }
+.pg-nutrition h2 span { color: var(--pg-purple); }
+.pg-nutrition__bio { display: grid; gap: 18px; }
+.pg-nutrition__bio p { max-width: 62ch; margin: 0; color: rgba(5,5,5,.66); font-size: 1rem; line-height: 1.75; }
+.pg-nutrition__button { margin-top: 30px; background: var(--pg-purple); }
+
+.pg-physio__intro h2, .pg-journey__intro h2 { margin-bottom: 16px; }
+.pg-physio__eyebrow, .pg-journey__eyebrow { margin-bottom: 14px; }
+.pg-physio__team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.pg-physio__person { position: relative; min-height: 602px; overflow: hidden; isolation: isolate; border-radius: 26px; background: #151518; color: var(--pg-white); box-shadow: 0 18px 40px rgba(0,0,0,.13); }
+.pg-physio__person > img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .45s ease; }
+.pg-physio__person:hover > img { transform: scale(1.05); }
+.pg-physio__content { position: absolute; z-index: 2; right: 24px; bottom: 24px; left: 24px; }
+.pg-physio__content h3 { margin: 0 0 6px; font: 800 clamp(1.55rem, 2.7vw, 2.3rem)/.94 "Poppins", sans-serif; letter-spacing: -.05em; text-transform: uppercase; }
+.pg-physio__content > p { margin: 0; color: rgba(254,255,254,.75); font-size: .92rem; }
+.pg-physio__socials { display: flex; gap: 9px; margin-top: 18px; }
+.pg-physio__socials a { display: grid; width: 40px; height: 40px; place-items: center; border: 1px solid rgba(254,255,254,.28); border-radius: 50%; background: rgba(254,255,254,.13); color: var(--pg-white); font: 700 .72rem/1 "Poppins", sans-serif; text-decoration: none; transition: transform .22s ease, background-color .22s ease, color .22s ease; }
+.pg-physio__socials a:hover, .pg-physio__socials a:focus-visible { background: var(--pg-green); color: var(--pg-black); outline: 0; transform: translateY(-3px); }
+
+.pg-journey__events { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.pg-journey__event { position: relative; display: none; overflow: hidden; border: 1px solid rgba(5,5,5,.09); border-radius: 24px; background: var(--pg-white); box-shadow: 0 16px 36px rgba(0,0,0,.08); }
+.pg-journey__event.is-visible { display: block; animation: pg-journey-card .32s ease both; }
+.pg-journey__event img { display: block; width: 100%; height: clamp(230px, 25vw, 310px); object-fit: cover; }
+.pg-journey__event > div { padding: 19px 19px 25px; }
+.pg-journey__event-year { margin: 0 0 10px; color: var(--pg-purple); font: 800 .78rem/1 "Poppins", sans-serif; letter-spacing: .12em; }
+.pg-journey__event h3 { margin: 0 0 9px; font: 800 1.25rem/1 "Poppins", sans-serif; letter-spacing: -.045em; text-transform: uppercase; }
+.pg-journey__event > div > p:last-child { margin: 0; color: rgba(5,5,5,.63); font-size: .9rem; line-height: 1.58; }
+.pg-journey__timeline { position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 18px; margin: 42px 0 0; padding: 0; list-style: none; }
+.pg-journey__timeline::before { position: absolute; top: 11px; right: 12%; left: 12%; height: 2px; content: ""; background: linear-gradient(90deg, var(--pg-purple), var(--pg-green)); }
+.pg-journey__timeline li { position: relative; display: flex; flex-direction: column; align-items: center; gap: 7px; opacity: .36; text-align: center; transition: opacity .24s ease; }
+.pg-journey__timeline li.is-active { opacity: 1; }
+.pg-journey__timeline li::before { z-index: 1; width: 24px; height: 24px; border: 5px solid #f8f8f9; border-radius: 50%; content: ""; background: var(--pg-purple); box-shadow: 0 0 0 1px rgba(92,61,129,.25); }
+.pg-journey__timeline span { color: var(--pg-purple); font: 800 .95rem/1 "Poppins", sans-serif; }
+.pg-journey__timeline small { color: rgba(5,5,5,.58); font-size: .82rem; }
+.pg-journey__controls { display: flex; justify-content: flex-end; gap: 10px; margin-top: 28px; }
+.pg-journey__control { min-height: 42px; padding: 0 16px; border: 1px solid rgba(5,5,5,.14); border-radius: 999px; background: var(--pg-white); color: var(--pg-black); cursor: pointer; font: 800 .72rem/1 "Poppins", sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+.pg-journey__control:not(:disabled):hover, .pg-journey__control:not(:disabled):focus-visible { border-color: var(--pg-green); background: var(--pg-green); outline: 0; }
+.pg-journey__control:disabled { cursor: not-allowed; opacity: .35; }
+@keyframes pg-journey-card { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: translateX(0); } }
+
+.pg-prices-cta__photo { position: relative; min-height: clamp(340px, 46vw, 560px); overflow: hidden; isolation: isolate; border-radius: 34px; background: #151518; box-shadow: 0 28px 65px rgba(0,0,0,.18); }
+.pg-prices-cta__photo > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.pg-prices-cta__shade { position: absolute; z-index: 1; inset: 0; background: linear-gradient(90deg, rgba(5,5,5,.76), rgba(5,5,5,.18) 66%), linear-gradient(180deg, rgba(5,5,5,.04), rgba(5,5,5,.36)); }
+.pg-prices-cta__content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; min-height: inherit; padding: clamp(28px, 6vw, 72px); color: var(--pg-white); }
+.pg-prices-cta__eyebrow { margin: 0 0 14px; color: var(--pg-green); font: 700 .76rem/1 "Poppins", sans-serif; letter-spacing: .18em; text-transform: uppercase; }
+.pg-prices-cta__content h2 { max-width: 11ch; margin: 0 0 16px; font: 800 clamp(2.8rem, 6vw, 5.4rem)/.88 "Poppins", sans-serif; letter-spacing: -.07em; text-transform: uppercase; }
+.pg-prices-cta__content h2 span { color: var(--pg-green); }
+.pg-prices-cta__content > p:not(.pg-prices-cta__eyebrow) { max-width: 48ch; margin: 0 0 28px; color: rgba(254,255,254,.78); font-size: clamp(1rem, 1.45vw, 1.08rem); line-height: 1.65; }
+.pg-prices-cta__button { background: var(--pg-green); color: var(--pg-black); }
+.pg-prices-cta__button:hover, .pg-prices-cta__button:focus-visible { background: #5af3af; outline: 0; transform: translateY(-3px); }
+
+.pg-coach-modal { width: min(840px, calc(100% - 28px)); max-height: min(680px, calc(100vh - 28px)); padding: 20px; overflow: auto; border: 0; border-radius: 30px; background: var(--pg-white); color: var(--pg-black); box-shadow: 0 32px 90px rgba(0,0,0,.4); scrollbar-width: none; }
+.pg-coach-modal::-webkit-scrollbar { display: none; }
+.pg-coach-modal::backdrop { background: rgba(5,5,5,.76); backdrop-filter: blur(6px); }
+.pg-coach-modal__grid { display: grid; grid-template-columns: .9fr 1.1fr; min-height: 460px; }
+.pg-coach-modal__image { display: block; width: 100%; height: 100%; min-height: 460px; object-fit: cover; border-radius: 16px; background: #1a1a1c; }
+.pg-coach-modal__content { display: flex; flex-direction: column; justify-content: center; padding: clamp(28px, 5vw, 56px); }
+.pg-coach-modal h2 { margin: 10px 0 18px; font: 800 clamp(2rem, 4vw, 3.25rem)/.92 "Poppins", sans-serif; letter-spacing: -.06em; text-transform: uppercase; }
+.pg-coach-modal__content > p:not(.pg-coach-modal__eyebrow):not(.pg-coach-modal__specialty) { margin: 0; color: rgba(5,5,5,.66); line-height: 1.65; }
+.pg-coach-modal__specialty { display: flex; flex-direction: column; gap: 6px; margin: 26px 0 0; padding-top: 18px; border-top: 1px solid rgba(5,5,5,.12); color: rgba(5,5,5,.64); line-height: 1.5; }
+.pg-coach-modal__specialty strong, .pg-coach-modal__gallery-heading p { color: var(--pg-purple); font: 700 .72rem/1 "Poppins", sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+.pg-coach-modal__gallery { padding-top: clamp(28px, 5vw, 48px); }
+.pg-coach-modal__gallery-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
+.pg-coach-modal__gallery-heading p { margin: 0; }
+.pg-coach-modal__gallery-heading span { color: rgba(5,5,5,.56); font-size: .82rem; }
+.pg-coach-modal__photos { display: grid; gap: 16px; }
+.pg-coach-modal__photo { display: block; width: 100%; height: clamp(280px, 53vw, 470px); padding: 0; overflow: hidden; border: 0; border-radius: 20px; background: #151518; cursor: zoom-in; }
+.pg-coach-modal__photo img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.pg-coach-modal__video { display: block; width: 100%; max-height: 470px; border-radius: 20px; background: #151518; }
+.pg-coach-modal__photo.is-zoomed { cursor: zoom-out; }
+.pg-coach-modal__photo.is-zoomed img { transform: scale(1.7); }
+.pg-coach-modal__close { position: absolute; z-index: 3; top: 30px; right: 30px; display: grid; width: 40px; height: 40px; place-items: center; padding: 0; border: 0; border-radius: 50%; background: rgba(254,254,254,.92); color: var(--pg-black); cursor: pointer; }
+.pg-coach-modal__close svg { display: block; width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-width: 2.75; }
+.pg-coach-modal__close:hover, .pg-coach-modal__close:focus-visible { background: var(--pg-green); outline: 0; }
+
+@media (max-width: 1000px) { .pg-coaches__list { grid-template-columns: repeat(3, 1fr); } .pg-coach-card__more { opacity: 1; transform: none; } }
+@media (max-width: 680px) { .pg-coaches, .pg-nutrition, .pg-physio, .pg-journey, .pg-prices-cta { padding-right: 14px; padding-left: 14px; } .pg-coaches__list { grid-template-columns: repeat(2, 1fr); gap: 10px; } .pg-coach-card { min-height: 300px; border-radius: 22px; } .pg-nutrition__shell, .pg-coach-modal__grid { grid-template-columns: 1fr; } .pg-nutrition__shell { border-radius: 26px; } .pg-nutrition__photo { min-height: 340px; } .pg-nutrition__content { padding: 38px 26px 42px; } .pg-physio__team, .pg-journey__events { grid-template-columns: 1fr; } .pg-physio__person { min-height: 504px; border-radius: 22px; } .pg-journey__event img { height: 190px; } .pg-prices-cta__photo { min-height: 360px; border-radius: 26px; } .pg-coach-modal__image { min-height: 240px; max-height: 280px; } .pg-coach-modal__content { min-height: 330px; } }
+@media (max-width: 420px) { .pg-coaches__list { grid-template-columns: 1fr; } .pg-coach-card { min-height: 340px; } }

@@ -3,21 +3,23 @@
  * Shared public-site header.
  *
  * Expected arguments:
- * - active_page: aboutus, prices, services, events, contact, or an empty string.
- * - cta_target: Optional on-page destination for the registration link.
- * - home_link: Optional home link; the home template uses its hero anchor.
- * - show_services: Whether to include the Services menu.
+ * - active_page: domov, o-nas, cennik, sluzby, organizujeme, kontakt, or an empty string.
  *
  * @package Progymorava_Child
  */
 
 defined( 'ABSPATH' ) || exit;
 
-$active_page   = isset( $args['active_page'] ) ? (string) $args['active_page'] : '';
-$cta_target    = isset( $args['cta_target'] ) ? (string) $args['cta_target'] : '';
-$home_link     = isset( $args['home_link'] ) ? (string) $args['home_link'] : home_url( '/temp-home/' );
-$show_services = ! isset( $args['show_services'] ) || (bool) $args['show_services'];
-$login_url     = 'https://prihlasenie.progymorava.sk/login';
+$active_page = isset( $args['active_page'] ) ? (string) $args['active_page'] : '';
+$home_link   = home_url( '/domov/' );
+$menu_items  = array(
+	'domov'        => array( 'label' => 'Domov', 'path' => '/domov/' ),
+	'o-nas'        => array( 'label' => 'O nás', 'path' => '/o-nas/' ),
+	'cennik'       => array( 'label' => 'Cenník', 'path' => '/cennik/' ),
+	'sluzby'       => array( 'label' => 'Služby', 'path' => '/sluzby/' ),
+	'organizujeme' => array( 'label' => 'Organizujeme', 'path' => '/organizujeme/' ),
+	'kontakt'      => array( 'label' => 'Kontakt', 'path' => '/kontakt/' ),
+);
 ?>
 
 <header class="pg-header" id="pg-header">
@@ -28,37 +30,12 @@ $login_url     = 'https://prihlasenie.progymorava.sk/login';
 
 		<nav class="pg-header__nav" aria-label="Primary navigation">
 			<ul class="pg-header__menu">
-				<li class="pg-header__item">
-					<a class="pg-header__link<?php echo 'aboutus' === $active_page ? ' pg-header__link--active' : ''; ?>" href="<?php echo esc_url( home_url( '/aboutus/' ) ); ?>"<?php echo 'aboutus' === $active_page ? ' aria-current="page"' : ''; ?>>O nás</a>
-				</li>
-				<li class="pg-header__item">
-					<a class="pg-header__link<?php echo 'prices' === $active_page ? ' pg-header__link--active' : ''; ?>" href="<?php echo esc_url( home_url( '/prices/' ) ); ?>"<?php echo 'prices' === $active_page ? ' aria-current="page"' : ''; ?>>Cenník</a>
-				</li>
-
-				<?php if ( $show_services ) : ?>
-					<li class="pg-header__item pg-header__item--dropdown">
-						<a class="pg-header__link<?php echo 'services' === $active_page ? ' pg-header__link--active' : ''; ?>" href="<?php echo esc_url( home_url( '/services/' ) ); ?>"<?php echo 'services' === $active_page ? ' aria-current="page"' : ''; ?>>
-							Služby <span class="pg-header__caret" aria-hidden="true"></span>
-						</a>
-						<ul class="pg-header__submenu">
-							<li><a class="pg-header__submenu-link" href="<?php echo esc_url( home_url( '/services/#coaches' ) ); ?>">Fitness tréneri</a></li>
-							<li><a class="pg-header__submenu-link" href="<?php echo esc_url( home_url( '/services/#nutrition' ) ); ?>">Výživa a progres</a></li>
-							<li><a class="pg-header__submenu-link" href="<?php echo esc_url( home_url( '/services/#physiotherapy' ) ); ?>">Fyzioterapia</a></li>
-						</ul>
+				<?php foreach ( $menu_items as $page_key => $menu_item ) : ?>
+					<li class="pg-header__item">
+						<a class="pg-header__link<?php echo $page_key === $active_page ? ' pg-header__link--active' : ''; ?>" href="<?php echo esc_url( home_url( $menu_item['path'] ) ); ?>"<?php echo $page_key === $active_page ? ' aria-current="page"' : ''; ?>><?php echo esc_html( $menu_item['label'] ); ?></a>
 					</li>
-				<?php endif; ?>
-
-				<li class="pg-header__item">
-					<a class="pg-header__link<?php echo 'events' === $active_page ? ' pg-header__link--active' : ''; ?>" href="<?php echo esc_url( home_url( '/events/' ) ); ?>"<?php echo 'events' === $active_page ? ' aria-current="page"' : ''; ?>>Organizujeme</a>
-				</li>
-				<li class="pg-header__item">
-					<a class="pg-header__link<?php echo 'contact' === $active_page ? ' pg-header__link--active' : ''; ?>" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"<?php echo 'contact' === $active_page ? ' aria-current="page"' : ''; ?>>Kontakt</a>
-				</li>
+				<?php endforeach; ?>
 			</ul>
 		</nav>
-
-		<?php if ( '' !== $cta_target ) : ?>
-			<a class="pg-header__cta" href="<?php echo esc_url( $login_url ); ?>">Prihlásenie / Registrácia</a>
-		<?php endif; ?>
 	</div>
 </header>

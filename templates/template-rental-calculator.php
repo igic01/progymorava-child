@@ -18,8 +18,7 @@ get_template_part(
 	'template-parts/shared/site',
 	'header',
 	array(
-		'active_page' => 'prices',
-		'cta_target'  => '#calculator',
+		'active_page' => 'cennik',
 	)
 );
 ?>

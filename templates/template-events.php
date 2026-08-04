@@ -17,8 +17,7 @@ get_template_part(
 	'template-parts/shared/site',
 	'header',
 	array(
-		'active_page' => 'events',
-		'cta_target'  => '#events',
+		'active_page' => 'organizujeme',
 	)
 );
 ?>

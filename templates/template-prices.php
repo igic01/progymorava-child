@@ -91,9 +91,7 @@ get_template_part(
 	'template-parts/shared/site',
 	'header',
 	array(
-		'active_page'   => 'prices',
-		'cta_target'    => '#price-list',
-		'show_services' => true,
+		'active_page' => 'cennik',
 	)
 );
 ?>

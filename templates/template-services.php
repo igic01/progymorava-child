@@ -77,9 +77,7 @@ get_template_part(
 	'template-parts/shared/site',
 	'header',
 	array(
-		'active_page'   => 'services',
-		'cta_target'    => '#coaches',
-		'show_services' => true,
+		'active_page' => 'sluzby',
 	)
 );
 ?>

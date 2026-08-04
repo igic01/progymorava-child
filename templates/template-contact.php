@@ -24,8 +24,7 @@ get_template_part(
 	'template-parts/shared/site',
 	'header',
 	array(
-		'active_page' => 'contact',
-		'cta_target'  => '#contact-form',
+		'active_page' => 'kontakt',
 	)
 );
 ?>

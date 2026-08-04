@@ -34,9 +34,7 @@ get_template_part(
 	'template-parts/shared/site',
 	'header',
 	array(
-		'active_page'   => 'aboutus',
-		'cta_target'    => '#team',
-		'show_services' => true,
+		'active_page' => 'o-nas',
 	)
 );
 ?>

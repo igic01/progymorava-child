@@ -70,8 +70,7 @@ get_template_part(
 	'template-parts/shared/site',
 	'header',
 	array(
-		'cta_target' => '#register',
-		'home_link'  => home_url( '/temp-home/' ),
+		'active_page' => 'domov',
 	)
 );
 ?>

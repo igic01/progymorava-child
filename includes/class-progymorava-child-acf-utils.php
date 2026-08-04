@@ -141,7 +141,7 @@ class Progymorava_Child_Acf_Utils {
 				'prices_room_image',
 			),
 			true
-		) || 1 === preg_match( '/^(about_team_member|services_(coach|physio|journey)_\d+|services_nutrition|services_prices_cta)_image$/', $field_name );
+		) || 1 === preg_match( '/^(home_training_card_\d+|about_team_member|services_(coach|physio|journey)_\d+|services_nutrition|services_prices_cta)_image$/', $field_name );
 	}
 
 	/**

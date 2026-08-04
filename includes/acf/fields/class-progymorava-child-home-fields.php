@@ -12,6 +12,27 @@ defined( 'ABSPATH' ) || exit;
  */
 class Progymorava_Child_Home_Fields {
 	/**
+	 * Get the saved number of training cards for dynamic ACF registration.
+	 *
+	 * @return int
+	 */
+	public static function training_card_count() {
+		return Progymorava_Child_Acf_Page_Context::count_field( 'home_training_card_count', 3 );
+	}
+
+	/**
+	 * Keep the original first-three field names compatible with saved content.
+	 *
+	 * @param int $number One-based card number.
+	 * @return string
+	 */
+	public static function training_card_suffix( $number ) {
+		$legacy_suffixes = array( 1 => 'one', 2 => 'two', 3 => 'three' );
+
+		return isset( $legacy_suffixes[ $number ] ) ? $legacy_suffixes[ $number ] : (string) $number;
+	}
+
+	/**
 	 * Register ACF hooks.
 	 *
 	 * @return void
@@ -53,19 +74,29 @@ class Progymorava_Child_Home_Fields {
 		$fields->field( 'hero_action_url', 'Action URL', 'home_hero_action_url', 'url', $default_url );
 
 		$fields->tab( 'training_tab', 'Training' );
+		$fields->field( 'training_card_count', 'Number of training cards', 'home_training_card_count', 'number', 3, array( 'min' => 0, 'step' => 1, 'instructions' => 'Save after changing this number, then refresh the editor to show the generated card fields.' ) );
 		$fields->field( 'training_hide_section', 'Hide this section', 'home_training_hide_section', 'true_false', 0, array( 'ui' => 1 ) );
 		$fields->field( 'training_eyebrow', 'Section heading', 'home_training_eyebrow', 'text', 'Trainings' );
 		$fields->field( 'training_link_label', 'Section link label', 'home_training_link_label', 'text', 'See all' );
 		$fields->field( 'training_link_url', 'Section link URL', 'home_training_link_url', 'url', $default_url );
-		$fields->field( 'training_card_one_title', 'First card title', 'home_training_card_one_title', 'text', 'Personal training' );
-		$fields->field( 'training_card_one_url', 'First card URL', 'home_training_card_one_url', 'url', $default_url );
-		$fields->field( 'training_card_one_image', 'First card image', 'home_training_card_one_image', 'image', $placeholder_image_id, $image_settings );
-		$fields->field( 'training_card_two_title', 'Second card title', 'home_training_card_two_title', 'text', 'Group fitness classes' );
-		$fields->field( 'training_card_two_url', 'Second card URL', 'home_training_card_two_url', 'url', $default_url );
-		$fields->field( 'training_card_two_image', 'Second card image', 'home_training_card_two_image', 'image', $placeholder_image_id, $image_settings );
-		$fields->field( 'training_card_three_title', 'Third card title', 'home_training_card_three_title', 'text', 'Functional training' );
-		$fields->field( 'training_card_three_url', 'Third card URL', 'home_training_card_three_url', 'url', $default_url );
-		$fields->field( 'training_card_three_image', 'Third card image', 'home_training_card_three_image', 'image', $placeholder_image_id, $image_settings );
+
+		$training_card_defaults = array(
+			array( 'Personal training', 'Private training with a personal trainer' ),
+			array( 'Group fitness classes', 'Group fitness training session' ),
+			array( 'Functional training', 'Functional fitness training session' ),
+		);
+
+		for ( $number = 1; $number <= self::training_card_count(); $number++ ) {
+			$suffix  = self::training_card_suffix( $number );
+			$default = isset( $training_card_defaults[ $number - 1 ] )
+				? $training_card_defaults[ $number - 1 ]
+				: array( 'Training card ' . $number, 'Gym training session' );
+			$prefix  = 'home_training_card_' . $suffix;
+
+			$fields->field( 'training_card_' . $suffix . '_title', 'Training card ' . $number . ' title', $prefix . '_title', 'text', $default[0] );
+			$fields->field( 'training_card_' . $suffix . '_url', 'Training card ' . $number . ' URL', $prefix . '_url', 'url', $default_url );
+			$fields->field( 'training_card_' . $suffix . '_image', 'Training card ' . $number . ' image', $prefix . '_image', 'image', $placeholder_image_id, $image_settings );
+		}
 
 		$fields->tab( 'promo_tab', 'Promotion' );
 		$fields->field( 'promo_hide_section', 'Hide this section', 'home_promo_hide_section', 'true_false', 0, array( 'ui' => 1 ) );

@@ -19,23 +19,27 @@ $motivation_image = progymorava_child_home_image( 'home_motivation_image', $plac
 
 $hero_action_label       = progymorava_child_home_field( 'home_hero_action_label', 'Start now' );
 $training_link_label     = progymorava_child_home_field( 'home_training_link_label', 'See all' );
-$training_cards          = array(
-	array(
-		'image' => progymorava_child_home_image( 'home_training_card_one_image', $placeholder_url, 'Private training with a personal trainer' ),
-		'title' => progymorava_child_home_field( 'home_training_card_one_title', 'Personal training' ),
-		'url'   => progymorava_child_home_field( 'home_training_card_one_url', 'https://www.google.com/' ),
-	),
-	array(
-		'image' => progymorava_child_home_image( 'home_training_card_two_image', $placeholder_url, 'Group fitness training session' ),
-		'title' => progymorava_child_home_field( 'home_training_card_two_title', 'Group fitness classes' ),
-		'url'   => progymorava_child_home_field( 'home_training_card_two_url', 'https://www.google.com/' ),
-	),
-	array(
-		'image' => progymorava_child_home_image( 'home_training_card_three_image', $placeholder_url, 'Functional fitness training session' ),
-		'title' => progymorava_child_home_field( 'home_training_card_three_title', 'Functional training' ),
-		'url'   => progymorava_child_home_field( 'home_training_card_three_url', 'https://www.google.com/' ),
-	),
+$training_card_count     = max( 0, (int) progymorava_child_home_field( 'home_training_card_count', 3 ) );
+$training_card_defaults  = array(
+	array( 'Personal training', 'Private training with a personal trainer' ),
+	array( 'Group fitness classes', 'Group fitness training session' ),
+	array( 'Functional training', 'Functional fitness training session' ),
 );
+$training_cards          = array();
+
+for ( $number = 1; $number <= $training_card_count; $number++ ) {
+	$suffix  = Progymorava_Child_Home_Fields::training_card_suffix( $number );
+	$default = isset( $training_card_defaults[ $number - 1 ] )
+		? $training_card_defaults[ $number - 1 ]
+		: array( 'Training card ' . $number, 'Gym training session' );
+	$prefix  = 'home_training_card_' . $suffix;
+
+	$training_cards[] = array(
+		'image' => progymorava_child_home_image( $prefix . '_image', $placeholder_url, $default[1] ),
+		'title' => progymorava_child_home_field( $prefix . '_title', $default[0] ),
+		'url'   => progymorava_child_home_field( $prefix . '_url', 'https://www.google.com/' ),
+	);
+}
 $why_items               = array(
 	array(
 		'icon'  => progymorava_child_home_field( 'home_why_item_one_icon', '24' ),

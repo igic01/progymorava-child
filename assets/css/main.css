@@ -352,6 +352,18 @@ body.pg-home .elementor-element-226dd84 {
   font-size: .82rem;
 }
 
+.pg-footer__legal-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+
+.pg-footer__legal-link:hover,
+.pg-footer__legal-link:focus-visible {
+  color: var(--pg-green);
+  outline: none;
+}
+
 .pg-footer__links {
   display: flex;
   flex: 1 1 auto;

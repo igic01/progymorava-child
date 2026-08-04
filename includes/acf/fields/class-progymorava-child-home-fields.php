@@ -74,7 +74,7 @@ class Progymorava_Child_Home_Fields {
 		$fields->field( 'hero_action_url', 'Action URL', 'home_hero_action_url', 'url', $default_url );
 
 		$fields->tab( 'training_tab', 'Training' );
-		$fields->field( 'training_card_count', 'Number of training cards', 'home_training_card_count', 'number', 3, array( 'min' => 0, 'step' => 1, 'instructions' => 'Save after changing this number, then refresh the editor to show the generated card fields.' ) );
+		$fields->field( 'training_card_count', 'Počet tréningových kariet', 'home_training_card_count', 'number', 3, array( 'min' => 0, 'step' => 1, 'instructions' => 'Po zmene tohto počtu stránku uložte a potom obnovte editor, aby sa zobrazili vygenerované polia kariet.' ) );
 		$fields->field( 'training_hide_section', 'Hide this section', 'home_training_hide_section', 'true_false', 0, array( 'ui' => 1 ) );
 		$fields->field( 'training_eyebrow', 'Section heading', 'home_training_eyebrow', 'text', 'Trainings' );
 		$fields->field( 'training_link_label', 'Section link label', 'home_training_link_label', 'text', 'See all' );

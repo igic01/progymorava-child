@@ -76,6 +76,7 @@ $theme_images_url     = get_stylesheet_directory_uri() . '/assets/images';
 
 	<div class="pg-footer__bottom">
 		<span>&copy; 2026 ProGym. Všetky práva vyhradené.</span>
+		<a class="pg-footer__legal-link" href="https://progymorava.sk/vseobecne-obchodne-podmienky/">Všeobecné obchodné podmienky</a>
 		<span>Trénujte s cieľom.</span>
 	</div>
 </footer>

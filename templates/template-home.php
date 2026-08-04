@@ -30,6 +30,11 @@ $training_cards          = array(
 		'title' => progymorava_child_home_field( 'home_training_card_two_title', 'Group fitness classes' ),
 		'url'   => progymorava_child_home_field( 'home_training_card_two_url', 'https://www.google.com/' ),
 	),
+	array(
+		'image' => progymorava_child_home_image( 'home_training_card_three_image', $placeholder_url, 'Functional fitness training session' ),
+		'title' => progymorava_child_home_field( 'home_training_card_three_title', 'Functional training' ),
+		'url'   => progymorava_child_home_field( 'home_training_card_three_url', 'https://www.google.com/' ),
+	),
 );
 $why_items               = array(
 	array(

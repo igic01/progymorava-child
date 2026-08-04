@@ -63,6 +63,9 @@ class Progymorava_Child_Home_Fields {
 		$fields->field( 'training_card_two_title', 'Second card title', 'home_training_card_two_title', 'text', 'Group fitness classes' );
 		$fields->field( 'training_card_two_url', 'Second card URL', 'home_training_card_two_url', 'url', $default_url );
 		$fields->field( 'training_card_two_image', 'Second card image', 'home_training_card_two_image', 'image', $placeholder_image_id, $image_settings );
+		$fields->field( 'training_card_three_title', 'Third card title', 'home_training_card_three_title', 'text', 'Functional training' );
+		$fields->field( 'training_card_three_url', 'Third card URL', 'home_training_card_three_url', 'url', $default_url );
+		$fields->field( 'training_card_three_image', 'Third card image', 'home_training_card_three_image', 'image', $placeholder_image_id, $image_settings );
 
 		$fields->tab( 'promo_tab', 'Promotion' );
 		$fields->field( 'promo_hide_section', 'Hide this section', 'home_promo_hide_section', 'true_false', 0, array( 'ui' => 1 ) );

@@ -131,6 +131,7 @@ class Progymorava_Child_Acf_Utils {
 				'home_hero_image',
 				'home_training_card_one_image',
 				'home_training_card_two_image',
+				'home_training_card_three_image',
 				'home_why_image',
 				'home_motivation_image',
 				'contact_primary_image',

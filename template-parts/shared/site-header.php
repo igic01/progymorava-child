@@ -25,7 +25,7 @@ $menu_items  = array(
 <header class="pg-header" id="pg-header">
 	<div class="pg-header__shell">
 		<a class="pg-header__brand" href="<?php echo esc_url( $home_link ); ?>" aria-label="ProGym home">
-			<img class="pg-header__logo" src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/wide white.svg' ); ?>" alt="ProGym" />
+			<img class="pg-header__logo" src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/clear_logo.svg' ); ?>" alt="ProGym" />
 		</a>
 
 		<nav class="pg-header__nav" aria-label="Primary navigation">

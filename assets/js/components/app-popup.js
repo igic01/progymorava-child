@@ -41,19 +41,14 @@
     const appleUrl = downloadButton.dataset.appleUrl;
     const googleUrl = downloadButton.dataset.googleUrl;
     const isAppleDevice = /iPad|iPhone|iPod|Macintosh/i.test(window.navigator.userAgent);
-    let closeTimer = null;
 
     downloadButton.href = isAppleDevice && appleUrl ? appleUrl : googleUrl;
 
     const closePopup = () => {
       layer.classList.remove('is-open');
       layer.setAttribute('aria-hidden', 'true');
+      layer.hidden = true;
       document.body.classList.remove('pg-app-popup-open');
-
-      window.clearTimeout(closeTimer);
-      closeTimer = window.setTimeout(() => {
-        layer.hidden = true;
-      }, 260);
     };
 
     const keepFocusInside = (event) => {

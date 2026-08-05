@@ -1042,6 +1042,31 @@
     line-height: 1.6;
 }
 
+.pg-room-cta__linked-text a {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--pg-white);
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    text-decoration-color: rgba(32, 237, 140, .7);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
+    transition: color .2s ease, transform .2s ease;
+}
+
+.pg-room-cta__linked-text a:hover,
+.pg-room-cta__linked-text a:focus-visible {
+    color: var(--pg-green);
+    outline: none;
+    transform: translateX(3px);
+}
+
+.pg-room-cta__linked-text span {
+    font-size: 1.15em;
+    text-decoration: none;
+}
+
 .pg-room-cta__actions {
     display: flex;
     flex-wrap: wrap;

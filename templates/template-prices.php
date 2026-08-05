@@ -294,9 +294,15 @@ get_template_part(
 					<p class="pg-room-cta__eyebrow"><?php echo esc_html( progymorava_child_home_field( 'prices_room_eyebrow', 'Back room reservations' ) ); ?></p>
 					<h2 id="room-cta-title"><?php echo esc_html( progymorava_child_home_field( 'prices_room_title', 'Your activity needs its own space.' ) ); ?></h2>
 					<p><?php echo nl2br( esc_html( progymorava_child_home_field( 'prices_room_description', 'Reserve our back room for boxing, Zumba, small group sessions, diagnostics, and performance testing.' ) ) ); ?></p>
+					<p class="pg-room-cta__linked-text">
+						<a href="<?php echo esc_url( progymorava_child_home_field( 'prices_room_link_url', home_url( '/sluzby/' ) ) ); ?>">
+							<?php echo esc_html( progymorava_child_home_field( 'prices_room_link_text', 'Viac informácií o priestore' ) ); ?>
+							<span aria-hidden="true">&rarr;</span>
+						</a>
+					</p>
 
 					<div class="pg-room-cta__actions">
-						<a class="pg-room-cta__button" href="<?php echo esc_url( progymorava_child_home_field( 'prices_room_action_url', home_url( '/contact/' ) ) ); ?>"><?php echo esc_html( progymorava_child_home_field( 'prices_room_action_label', 'Rent the back room' ) ); ?></a>
+						<a class="pg-room-cta__button" href="<?php echo esc_url( progymorava_child_home_field( 'prices_room_action_url', home_url( '/kontakt/' ) ) ); ?>"><?php echo esc_html( progymorava_child_home_field( 'prices_room_action_label', 'Rent the back room' ) ); ?></a>
 					</div>
 				</div>
 			</div>

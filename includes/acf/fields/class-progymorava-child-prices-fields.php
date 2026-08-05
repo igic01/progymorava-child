@@ -206,8 +206,10 @@ class Progymorava_Child_Prices_Fields {
 		$builder->add_field( 'room_eyebrow', 'Eyebrow', 'prices_room_eyebrow', 'text', 'Back room reservations' );
 		$builder->add_field( 'room_title', 'Title', 'prices_room_title', 'text', 'Your activity needs its own space.' );
 		$builder->add_field( 'room_description', 'Description', 'prices_room_description', 'textarea', 'Reserve our back room for boxing, Zumba, small group sessions, diagnostics, and performance testing.', $textarea );
+		$builder->add_field( 'room_link_text', 'Text odkazového odseku', 'prices_room_link_text', 'text', 'Viac informácií o priestore' );
+		$builder->add_field( 'room_link_url', 'URL odkazového odseku', 'prices_room_link_url', 'url', home_url( '/sluzby/' ) );
 		$builder->add_field( 'room_action_label', 'Action label', 'prices_room_action_label', 'text', 'Rent the back room' );
-		$builder->add_field( 'room_action_url', 'Action URL', 'prices_room_action_url', 'url', home_url( '/contact/' ) );
+		$builder->add_field( 'room_action_url', 'Action URL', 'prices_room_action_url', 'url', home_url( '/kontakt/' ) );
 
 		$builder->add_tab( 'faq_tab', 'FAQ' );
 		$builder->add_field( 'faq_eyebrow', 'Eyebrow', 'prices_faq_eyebrow', 'text', 'FAQ' );

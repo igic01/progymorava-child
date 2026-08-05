@@ -66,13 +66,6 @@ class Progymorava_Child_Services_Fields {
 			array( 'Tomas Kral', 'Manual therapy' ),
 			array( 'Nina Horvat', 'Mobility & recovery' ),
 		);
-		$journey_defaults   = array(
-			array( '2026', 'Today', 'Training, connected', 'Coaching, physiotherapy, and nutrition come together to give every member more complete support.' ),
-			array( '2025', 'Recovery', 'Recovery first', 'We expanded our recovery offering to make better movement a consistent part of every training plan.' ),
-			array( '2024', 'Community', 'Stronger together', 'New group sessions brought more energy, accountability, and momentum to the gym floor.' ),
-			array( '2023', 'Foundation', 'A stronger start', 'Our team set out to create a welcoming place where focused training becomes a lasting habit.' ),
-		);
-
 		$fields->tab( 'coaches_tab', 'Gym coaches' );
 		$fields->field( 'coaches_hide', 'Hide this section', 'services_coaches_hide_section', 'true_false', 0, array( 'ui' => 1 ) );
 		$fields->field( 'coaches_eyebrow', 'Kicker', 'services_coaches_eyebrow', 'text', 'Meet the team' );
@@ -132,23 +125,6 @@ class Progymorava_Child_Services_Fields {
 			$fields->field( 'physio_' . $number . '_facebook', 'Physiotherapist ' . $number . ' Facebook URL', 'services_physio_' . $number . '_facebook', 'url' );
 			$fields->field( 'physio_' . $number . '_instagram', 'Physiotherapist ' . $number . ' Instagram URL', 'services_physio_' . $number . '_instagram', 'url' );
 			$fields->field( 'physio_' . $number . '_phone', 'Physiotherapist ' . $number . ' phone URL', 'services_physio_' . $number . '_phone', 'url' );
-		}
-
-		$fields->tab( 'journey_tab', 'Our journey' );
-		$fields->field( 'journey_hide', 'Hide this section', 'services_journey_hide_section', 'true_false', 0, array( 'ui' => 1 ) );
-		$fields->field( 'journey_eyebrow', 'Kicker', 'services_journey_eyebrow', 'text', 'Our journey' );
-		$fields->field( 'journey_title', 'Title', 'services_journey_title', 'text', 'Progress, year by' );
-		$fields->field( 'journey_accent', 'Title accent', 'services_journey_title_accent', 'text', 'year.' );
-		$fields->field( 'journey_lead', 'Description', 'services_journey_lead', 'textarea', 'From the work we do today to the moments that shaped us, each year has moved our community forward.', $textarea_settings );
-		$fields->field( 'journey_count', 'Timeline item count', 'services_journey_count', 'number', 4, array( 'min' => 0, 'step' => 1, 'instructions' => 'Save after changing this number, then refresh the editor to show the generated timeline fields.' ) );
-
-		for ( $number = 1; $number <= self::count( 'services_journey_count', 4 ); $number++ ) {
-			$default = isset( $journey_defaults[ $number - 1 ] ) ? $journey_defaults[ $number - 1 ] : array( 'Year', 'Label', 'Milestone', 'Timeline description.' );
-			$fields->field( 'journey_' . $number . '_image', 'Timeline item ' . $number . ' image', 'services_journey_' . $number . '_image', 'image', $placeholder_image, $image_settings );
-			$fields->field( 'journey_' . $number . '_year', 'Timeline item ' . $number . ' year', 'services_journey_' . $number . '_year', 'text', $default[0] );
-			$fields->field( 'journey_' . $number . '_label', 'Timeline item ' . $number . ' short label', 'services_journey_' . $number . '_label', 'text', $default[1] );
-			$fields->field( 'journey_' . $number . '_title', 'Timeline item ' . $number . ' title', 'services_journey_' . $number . '_title', 'text', $default[2] );
-			$fields->field( 'journey_' . $number . '_text', 'Timeline item ' . $number . ' description', 'services_journey_' . $number . '_text', 'textarea', $default[3], $textarea_settings );
 		}
 
 		$fields->tab( 'prices_cta_tab', 'Price list call to action' );

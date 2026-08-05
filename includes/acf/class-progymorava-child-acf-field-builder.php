@@ -117,7 +117,6 @@ class Progymorava_Child_Acf_Field_Builder {
 			'Gym coaches'                  => 'Tréneri',
 			'Nutrition'                    => 'Výživa',
 			'Physiotherapy'                => 'Fyzioterapia',
-			'Our journey'                  => 'Naša cesta',
 			'Price list call to action'    => 'Výzva na akciu – cenník',
 			'Choose your next level.'      => 'Vyberte si svoju ďalšiu úroveň.',
 			'ProGym app'                   => 'Aplikácia ProGym',

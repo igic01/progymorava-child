@@ -14,10 +14,8 @@ $theme_images_url = get_stylesheet_directory_uri() . '/assets/images';
 $placeholder_url  = $theme_images_url . '/placeholder.jpg';
 $coach_count      = Progymorava_Child_Services_Fields::count( 'services_coaches_count', 5 );
 $physio_count     = Progymorava_Child_Services_Fields::count( 'services_physio_count', 3 );
-$journey_count    = Progymorava_Child_Services_Fields::count( 'services_journey_count', 4 );
 $coaches          = array();
 $physios          = array();
-$journey_items    = array();
 
 for ( $index = 1; $index <= $coach_count; $index++ ) {
 	$gallery = array();
@@ -60,16 +58,6 @@ for ( $index = 1; $index <= $physio_count; $index++ ) {
 		'facebook'  => progymorava_child_home_field( 'services_physio_' . $index . '_facebook', '' ),
 		'instagram' => progymorava_child_home_field( 'services_physio_' . $index . '_instagram', '' ),
 		'phone'     => progymorava_child_home_field( 'services_physio_' . $index . '_phone', '' ),
-	);
-}
-
-for ( $index = 1; $index <= $journey_count; $index++ ) {
-	$journey_items[] = array(
-		'image' => progymorava_child_home_image( 'services_journey_' . $index . '_image', $placeholder_url, 'ProGym milestone' ),
-		'year'  => progymorava_child_home_field( 'services_journey_' . $index . '_year', 'Year' ),
-		'label' => progymorava_child_home_field( 'services_journey_' . $index . '_label', 'Milestone' ),
-		'title' => progymorava_child_home_field( 'services_journey_' . $index . '_title', 'Milestone title' ),
-		'text'  => progymorava_child_home_field( 'services_journey_' . $index . '_text', 'Timeline description.' ),
 	);
 }
 
@@ -142,10 +130,6 @@ get_template_part(
 				</div><?php endif; ?>
 			</div>
 		</section>
-	<?php endif; ?>
-
-	<?php if ( ! (int) progymorava_child_home_field( 'services_journey_hide_section', 0 ) && ! empty( $journey_items ) ) : ?>
-		<section class="pg-journey" aria-labelledby="journey-title"><div class="pg-journey__shell"><div class="pg-journey__intro"><p class="pg-journey__eyebrow"><?php echo esc_html( progymorava_child_home_field( 'services_journey_eyebrow', 'Our journey' ) ); ?></p><h2 id="journey-title"><?php echo esc_html( progymorava_child_home_field( 'services_journey_title', 'Progress, year by' ) ); ?> <span><?php echo esc_html( progymorava_child_home_field( 'services_journey_title_accent', 'year.' ) ); ?></span></h2><p><?php echo nl2br( esc_html( progymorava_child_home_field( 'services_journey_lead', 'From the work we do today to the moments that shaped us, each year has moved our community forward.' ) ) ); ?></p></div><div class="pg-journey__viewport"><div class="pg-journey__events"><?php foreach ( $journey_items as $index => $item ) : ?><article class="pg-journey__event<?php echo $index < 3 ? ' is-visible' : ''; ?>" data-journey-index="<?php echo esc_attr( $index ); ?>"><img src="<?php echo esc_url( $item['image']['url'] ); ?>" alt="<?php echo esc_attr( $item['image']['alt'] ?: $item['title'] ); ?>" /><div><p class="pg-journey__event-year"><?php echo esc_html( $item['year'] ); ?></p><h3><?php echo esc_html( $item['title'] ); ?></h3><p><?php echo esc_html( $item['text'] ); ?></p></div></article><?php endforeach; ?></div><ol class="pg-journey__timeline" aria-label="ProGym timeline"><?php foreach ( $journey_items as $index => $item ) : ?><li class="<?php echo $index < 3 ? 'is-active' : ''; ?>"><span><?php echo esc_html( $item['year'] ); ?></span><small><?php echo esc_html( $item['label'] ); ?></small></li><?php endforeach; ?></ol><?php if ( count( $journey_items ) > 3 ) : ?><div class="pg-journey__controls" aria-label="Timeline navigation"><button class="pg-journey__control" type="button" data-journey-newer disabled>&larr; Newer years</button><button class="pg-journey__control" type="button" data-journey-older>Earlier years &rarr;</button></div><?php endif; ?></div></div></section>
 	<?php endif; ?>
 
 	<?php if ( ! (int) progymorava_child_home_field( 'services_prices_cta_hide_section', 0 ) ) : ?>

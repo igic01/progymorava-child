@@ -51,21 +51,4 @@
     modal.addEventListener('click', (event) => { if (event.target === modal) modal.close(); });
   }
 
-  const events = [...document.querySelectorAll('[data-journey-index]')];
-  const nodes = [...document.querySelectorAll('.pg-journey__timeline li')];
-  const newer = document.querySelector('[data-journey-newer]');
-  const older = document.querySelector('[data-journey-older]');
-  const visibleCount = 3;
-  let start = 0;
-
-  if (newer && older) {
-    const render = () => {
-      events.forEach((event, index) => event.classList.toggle('is-visible', index >= start && index < start + visibleCount));
-      nodes.forEach((node, index) => node.classList.toggle('is-active', index >= start && index < start + visibleCount));
-      newer.disabled = start === 0;
-      older.disabled = start >= events.length - visibleCount;
-    };
-    newer.addEventListener('click', () => { start = Math.max(0, start - 1); render(); });
-    older.addEventListener('click', () => { start = Math.min(events.length - visibleCount, start + 1); render(); });
-  }
 })();

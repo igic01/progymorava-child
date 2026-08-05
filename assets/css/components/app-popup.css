@@ -263,9 +263,7 @@ body.pg-app-popup-open {
     grid-template-columns: 1fr;
     grid-template-rows: clamp(165px, 24dvh, 210px) auto;
     width: 100%;
-    min-width: 0;
-    max-height: 90vh;
-    max-height: 90dvh;
+    height: 90vh;
     overflow-y: auto;
     border-radius: 28px;
   }

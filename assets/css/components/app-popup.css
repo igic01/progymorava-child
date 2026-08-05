@@ -286,6 +286,8 @@ body.pg-app-popup-open {
   .pg-app-popup__phone {
     width: 138px;
     height: 270px;
+    margin: 0;
+    place-self: center;
     border-radius: 29px;
     transform: rotate(-7deg);
   }
@@ -338,7 +340,6 @@ body.pg-app-popup-open {
   .pg-app-popup__phone {
     width: 126px;
     height: 248px;
-    margin-top: 88px;
     border-radius: 27px;
   }
 

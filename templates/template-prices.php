@@ -8,7 +8,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-get_header( 'home' );
+get_header();
 
 $theme_images_url = get_stylesheet_directory_uri() . '/assets/images';
 $plan_count       = Progymorava_Child_Prices_Fields::current_page_count( 'prices_plan_count', 5 );
@@ -87,13 +87,6 @@ foreach ( $nutrition_plan_defaults as $index => $defaults ) {
 	);
 }
 
-get_template_part(
-	'template-parts/shared/site',
-	'header',
-	array(
-		'active_page' => 'cennik',
-	)
-);
 ?>
 
 <main>
@@ -338,17 +331,4 @@ get_template_part(
 	</section>
 </main>
 
-<?php
-get_template_part(
-	'template-parts/shared/site',
-	'footer',
-	array(
-		'include_contact'      => true,
-		'include_contact_link' => true,
-		'include_services'     => true,
-		'extended_services'    => false,
-		'include_follow'       => false,
-	)
-);
-
-get_footer( 'home' );
+<?php get_footer();

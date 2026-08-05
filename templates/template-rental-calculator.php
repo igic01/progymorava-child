@@ -10,7 +10,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-get_header( 'home' );
+get_header();
 
 $theme_images_url  = get_stylesheet_directory_uri() . '/assets/images';
 $hero_image        = progymorava_child_home_image( 'rental_calc_hero_image', $theme_images_url . '/placeholder.jpg', 'Priestor na prenájom v ProGym Orava' );
@@ -51,13 +51,6 @@ $format_rate       = static function ( $rate ) {
 	return number_format_i18n( $rate, $decimals ) . ' €';
 };
 
-get_template_part(
-	'template-parts/shared/site',
-	'header',
-	array(
-		'active_page' => 'prenajom',
-	)
-);
 ?>
 
 <main
@@ -163,14 +156,4 @@ get_template_part(
 	<?php endif; ?>
 </main>
 
-<?php
-get_template_part(
-	'template-parts/shared/site',
-	'footer',
-	array(
-		'extended_services' => true,
-		'include_follow'    => true,
-	)
-);
-
-get_footer( 'home' );
+<?php get_footer();

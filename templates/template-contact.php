@@ -8,7 +8,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-get_header( 'home' );
+get_header();
 
 $theme_images_url = get_stylesheet_directory_uri() . '/assets/images';
 $placeholder_url  = $theme_images_url . '/placeholder.jpg';
@@ -20,13 +20,6 @@ $phone_href       = preg_replace( '/[^0-9+]/', '', $contact_phone );
 $hide_primary     = 1 === (int) progymorava_child_home_field( 'contact_primary_hide_section', 0 );
 $hide_details     = 1 === (int) progymorava_child_home_field( 'contact_details_hide_section', 0 );
 
-get_template_part(
-	'template-parts/shared/site',
-	'header',
-	array(
-		'active_page' => 'kontakt',
-	)
-);
 ?>
 
 <main id="contact">
@@ -126,17 +119,4 @@ get_template_part(
 	</section>
 </main>
 
-<?php
-get_template_part(
-	'template-parts/shared/site',
-	'footer',
-	array(
-		'include_contact'      => true,
-		'include_contact_link' => true,
-		'include_services'     => true,
-		'extended_services'    => true,
-		'include_follow'       => true,
-	)
-);
-
-get_footer( 'home' );
+<?php get_footer();

@@ -8,7 +8,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-get_header( 'home' );
+get_header();
 
 $theme_images_url = get_stylesheet_directory_uri() . '/assets/images';
 $placeholder_url  = $theme_images_url . '/placeholder.jpg';
@@ -61,13 +61,6 @@ for ( $index = 1; $index <= $physio_count; $index++ ) {
 	);
 }
 
-get_template_part(
-	'template-parts/shared/site',
-	'header',
-	array(
-		'active_page' => 'sluzby',
-	)
-);
 ?>
 
 <main id="services">
@@ -140,6 +133,4 @@ get_template_part(
 	<dialog class="pg-coach-modal" aria-labelledby="coach-modal-name"><button class="pg-coach-modal__close" type="button" aria-label="Close coach profile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17" /></svg></button><div class="pg-coach-modal__grid"><img class="pg-coach-modal__image" src="<?php echo esc_url( $placeholder_url ); ?>" alt="" /><div class="pg-coach-modal__content"><p class="pg-coach-modal__eyebrow" id="coach-modal-role"></p><h2 id="coach-modal-name"></h2><p id="coach-modal-text"></p><p class="pg-coach-modal__specialty"><strong>Specialty</strong><span id="coach-modal-specialty"></span></p></div></div><div class="pg-coach-modal__gallery" id="coach-modal-gallery" hidden><div class="pg-coach-modal__gallery-heading"><p>Coach gallery</p><span>Click a photo to zoom</span></div><div class="pg-coach-modal__photos" id="coach-modal-photos"></div></div></dialog>
 </main>
 
-<?php
-get_template_part( 'template-parts/shared/site', 'footer', array( 'include_contact' => true, 'include_contact_link' => true, 'include_services' => true, 'extended_services' => true, 'include_follow' => true ) );
-get_footer( 'home' );
+<?php get_footer();

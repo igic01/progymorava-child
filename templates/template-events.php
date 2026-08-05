@@ -8,18 +8,11 @@
 
 defined( 'ABSPATH' ) || exit;
 
-get_header( 'home' );
+get_header();
 
 $theme_images_url = get_stylesheet_directory_uri() . '/assets/images';
 $event_posts      = progymorava_child_home_field( 'events_posts', array() );
 
-get_template_part(
-	'template-parts/shared/site',
-	'header',
-	array(
-		'active_page' => 'organizujeme',
-	)
-);
 ?>
 
 <main id="events">
@@ -92,17 +85,4 @@ get_template_part(
 	</section>
 </main>
 
-<?php
-get_template_part(
-	'template-parts/shared/site',
-	'footer',
-	array(
-		'include_contact'      => true,
-		'include_contact_link' => true,
-		'include_services'     => true,
-		'extended_services'    => false,
-		'include_follow'       => false,
-	)
-);
-
-get_footer( 'home' );
+<?php get_footer();

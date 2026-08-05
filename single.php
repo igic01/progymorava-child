@@ -7,17 +7,9 @@
 
 defined( 'ABSPATH' ) || exit;
 
-get_header( 'home' );
+get_header();
 
 $theme_images_url = get_stylesheet_directory_uri() . '/assets/images';
-
-get_template_part(
-	'template-parts/shared/site',
-	'header',
-	array(
-		'active_page' => 'organizujeme',
-	)
-);
 ?>
 
 <?php while ( have_posts() ) : ?>
@@ -78,17 +70,4 @@ get_template_part(
 	</main>
 <?php endwhile; ?>
 
-<?php
-get_template_part(
-	'template-parts/shared/site',
-	'footer',
-	array(
-		'include_contact'      => false,
-		'include_contact_link' => false,
-		'include_services'     => false,
-		'extended_services'    => false,
-		'include_follow'       => false,
-	)
-);
-
-get_footer( 'home' );
+<?php get_footer();

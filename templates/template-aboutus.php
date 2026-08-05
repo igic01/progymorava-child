@@ -8,7 +8,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-get_header( 'home' );
+get_header();
 
 $theme_images_url   = get_stylesheet_directory_uri() . '/assets/images';
 $placeholder_url    = $theme_images_url . '/placeholder.jpg';
@@ -30,13 +30,6 @@ for ( $index = 0; $index < $team_member_count; $index++ ) {
 	);
 }
 
-get_template_part(
-	'template-parts/shared/site',
-	'header',
-	array(
-		'active_page' => 'o-nas',
-	)
-);
 ?>
 
 <main>
@@ -116,17 +109,4 @@ get_template_part(
 	<?php endif; ?>
 </main>
 
-<?php
-get_template_part(
-	'template-parts/shared/site',
-	'footer',
-	array(
-		'include_contact'      => true,
-		'include_contact_link' => true,
-		'include_services'     => true,
-		'extended_services'    => true,
-		'include_follow'       => true,
-	)
-);
-
-get_footer( 'home' );
+<?php get_footer();

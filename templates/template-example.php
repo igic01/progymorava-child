@@ -8,7 +8,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-get_header( 'redesign' );
+get_header();
 ?>
 
 	<div <?php generate_do_attr( 'content' ); ?>>
@@ -41,4 +41,4 @@ get_header( 'redesign' );
 <?php
 do_action( 'generate_after_primary_content_area' );
 
-get_footer( 'redesign' );
+get_footer();

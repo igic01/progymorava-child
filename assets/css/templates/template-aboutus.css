@@ -137,14 +137,17 @@
 
 .pg-about-team__track {
     display: flex;
+    width: 100%;
+    min-width: 0;
     gap: 28px;
     overflow-x: auto;
     padding: 10px 28px 28px 2px;
     scrollbar-width: none;
     cursor: grab;
     user-select: none;
-    touch-action: pan-y;
+    touch-action: pan-x pan-y;
     overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
 }
 
 .pg-about-team__track::-webkit-scrollbar {
@@ -339,6 +342,8 @@
     .pg-about-team__track {
         gap: 18px;
         padding-right: 14px;
+        cursor: auto;
+        scroll-behavior: auto;
     }
 
     .pg-about-team__card {

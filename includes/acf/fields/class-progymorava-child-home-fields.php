@@ -145,6 +145,12 @@ class Progymorava_Child_Home_Fields {
 		$fields->field( 'promo_regular_price', 'Regular price', 'home_promo_regular_price', 'text', '115€' );
 		$fields->field( 'promo_action_label', 'Action label', 'home_promo_action_label', 'text', 'View price list' );
 		$fields->field( 'promo_action_url', 'Action URL', 'home_promo_action_url', 'url', $default_url );
+		$fields->field( 'promo_gallery_title', 'Nadpis fotografickej karty', 'home_promo_gallery_title', 'text', 'Nahliadni do ProGym' );
+		$fields->field( 'promo_gallery_image_one', 'Prvá fotografia', 'home_promo_gallery_image_one', 'image', $placeholder_image_id, $image_settings );
+		$fields->field( 'promo_gallery_image_two', 'Druhá fotografia', 'home_promo_gallery_image_two', 'image', $placeholder_image_id, $image_settings );
+		$fields->field( 'promo_gallery_image_three', 'Tretia fotografia', 'home_promo_gallery_image_three', 'image', $placeholder_image_id, $image_settings );
+		$fields->field( 'promo_gallery_button_label', 'Text tlačidla fotografickej karty', 'home_promo_gallery_button_label', 'text', 'Pozrieť galériu' );
+		$fields->field( 'promo_gallery_button_url', 'URL tlačidla fotografickej karty', 'home_promo_gallery_button_url', 'url', $default_url );
 
 		$fields->tab( 'why_tab', 'Why us' );
 		$fields->field( 'why_hide_section', 'Hide this section', 'home_why_hide_section', 'true_false', 0, array( 'ui' => 1 ) );

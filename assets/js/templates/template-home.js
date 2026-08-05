@@ -103,3 +103,51 @@
     }
   });
 })();
+
+(() => {
+  const gallery = document.querySelector('[data-promo-gallery]');
+
+  if (!gallery) {
+    return;
+  }
+
+  const items = [...gallery.querySelectorAll('[data-promo-gallery-item]')];
+  const lightbox = gallery.querySelector('[data-promo-gallery-lightbox]');
+  const image = gallery.querySelector('[data-promo-gallery-image]');
+  const closeButton = gallery.querySelector('[data-promo-gallery-close]');
+
+  if (!items.length || !lightbox || !image) {
+    return;
+  }
+
+  let lastTrigger = null;
+
+  items.forEach((item) => {
+    item.addEventListener('click', () => {
+      lastTrigger = item;
+      image.src = item.dataset.imageUrl;
+      image.alt = '';
+
+      if (!lightbox.open) {
+        lightbox.showModal();
+      }
+    });
+  });
+
+  closeButton?.addEventListener('click', () => lightbox.close());
+
+  lightbox.addEventListener('click', (event) => {
+    if (event.target === lightbox) {
+      lightbox.close();
+    }
+  });
+
+  lightbox.addEventListener('close', () => {
+    image.removeAttribute('src');
+    image.alt = '';
+
+    if (lastTrigger) {
+      lastTrigger.focus();
+    }
+  });
+})();

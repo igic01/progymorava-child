@@ -74,6 +74,11 @@ $promo_price_label   = progymorava_child_home_field( 'home_promo_price_label', '
 $promo_price         = progymorava_child_home_field( 'home_promo_price', '90€' );
 $promo_regular_label = progymorava_child_home_field( 'home_promo_regular_label', 'Regularly' );
 $promo_regular_price = progymorava_child_home_field( 'home_promo_regular_price', '115€' );
+$promo_gallery_images = array(
+	progymorava_child_home_image( 'home_promo_gallery_image_one', $placeholder_url, 'ProGym fotografia 1' ),
+	progymorava_child_home_image( 'home_promo_gallery_image_two', $placeholder_url, 'ProGym fotografia 2' ),
+	progymorava_child_home_image( 'home_promo_gallery_image_three', $placeholder_url, 'ProGym fotografia 3' ),
+);
 
 $gallery_selection = (array) progymorava_child_home_field( 'home_gallery_media', array() );
 $gallery_items     = array();
@@ -250,6 +255,37 @@ get_template_part(
 					<?php echo esc_html( progymorava_child_home_field( 'home_promo_action_label', 'View price list' ) ); ?>
 				</a>
 			</div>
+
+			<article class="pg-promo-gallery" data-promo-gallery aria-labelledby="promo-gallery-title">
+				<div class="pg-promo-gallery__top">
+					<h3 id="promo-gallery-title"><?php echo esc_html( progymorava_child_home_field( 'home_promo_gallery_title', 'Nahliadni do ProGym' ) ); ?></h3>
+				</div>
+
+				<div class="pg-promo-gallery__grid">
+					<?php foreach ( $promo_gallery_images as $promo_gallery_index => $promo_gallery_image ) : ?>
+						<button
+							class="pg-promo-gallery__image-button"
+							type="button"
+							data-promo-gallery-item
+							data-image-url="<?php echo esc_url( $promo_gallery_image['url'] ); ?>"
+							aria-label="<?php echo esc_attr( sprintf( 'Otvoriť fotografiu %d', $promo_gallery_index + 1 ) ); ?>"
+						>
+							<img src="<?php echo esc_url( $promo_gallery_image['url'] ); ?>" alt="<?php echo esc_attr( $promo_gallery_image['alt'] ); ?>" loading="lazy" decoding="async" />
+						</button>
+					<?php endforeach; ?>
+				</div>
+
+				<a class="pg-promo-gallery__action" href="<?php echo esc_url( progymorava_child_home_field( 'home_promo_gallery_button_url', 'https://www.google.com/' ) ); ?>">
+					<?php echo esc_html( progymorava_child_home_field( 'home_promo_gallery_button_label', 'Pozrieť galériu' ) ); ?>
+				</a>
+
+				<dialog class="pg-promo-gallery__lightbox" data-promo-gallery-lightbox aria-label="Náhľad fotografie">
+					<button class="pg-promo-gallery__close" type="button" data-promo-gallery-close aria-label="Zavrieť fotografiu">&times;</button>
+					<div class="pg-promo-gallery__stage">
+						<img data-promo-gallery-image alt="" />
+					</div>
+				</dialog>
+			</article>
 		</section>
 	<?php endif; ?>
 

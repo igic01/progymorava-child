@@ -604,6 +604,178 @@
     transform: translateY(-2px);
 }
 
+.pg-promo-gallery {
+    position: relative;
+    width: min(1220px, 100%);
+    margin: clamp(18px, 2.4vw, 28px) auto 0;
+    padding: clamp(24px, 4vw, 42px);
+    overflow: hidden;
+    border-radius: 30px;
+    background:
+        radial-gradient(circle at 90% 10%, rgba(32, 237, 140, .17), transparent 28%),
+        linear-gradient(135deg, #151218 0%, #2f2140 100%);
+    box-shadow: 0 24px 54px rgba(5, 5, 5, .15);
+    color: var(--pg-white);
+}
+
+.pg-promo-gallery__top {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: clamp(18px, 2.5vw, 28px);
+}
+
+.pg-promo-gallery h3 {
+    max-width: 18ch;
+    margin: 0;
+    font: 800 clamp(1.8rem, 4vw, 3.2rem)/.98 "Poppins", sans-serif;
+    letter-spacing: -.055em;
+    text-transform: uppercase;
+}
+
+.pg-promo-gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(10px, 1.6vw, 18px);
+}
+
+.pg-promo-gallery__image-button {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid rgba(254, 255, 254, .16);
+    border-radius: 20px;
+    background: #09090a;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, .2);
+    cursor: zoom-in;
+}
+
+.pg-promo-gallery__image-button::after {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(180deg, transparent 55%, rgba(5, 5, 5, .2));
+    content: "";
+    pointer-events: none;
+    transition: opacity .25s ease;
+}
+
+.pg-promo-gallery__image-button img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .35s ease;
+}
+
+.pg-promo-gallery__image-button:hover img,
+.pg-promo-gallery__image-button:focus-visible img {
+    transform: scale(1.045);
+}
+
+.pg-promo-gallery__image-button:hover::after,
+.pg-promo-gallery__image-button:focus-visible::after {
+    opacity: 0;
+}
+
+.pg-promo-gallery__image-button:focus-visible {
+    outline: 3px solid var(--pg-green);
+    outline-offset: 4px;
+}
+
+.pg-promo-gallery__action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    margin-top: clamp(20px, 3vw, 30px);
+    padding: 0 24px;
+    border-radius: 999px;
+    background: var(--pg-green);
+    color: var(--pg-black);
+    font: 800 .78rem/1 "Poppins", sans-serif;
+    letter-spacing: .08em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color .2s ease, transform .2s ease;
+}
+
+.pg-promo-gallery__action:hover,
+.pg-promo-gallery__action:focus-visible {
+    background: #59f3ad;
+    outline: none;
+    transform: translateY(-2px);
+}
+
+.pg-promo-gallery__lightbox {
+    position: fixed;
+    inset: 0;
+    width: min(1100px, calc(100% - 24px));
+    height: min(800px, calc(100dvh - 24px));
+    max-width: none;
+    max-height: none;
+    margin: auto;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: 24px;
+    background: #070708;
+    box-shadow: 0 32px 90px rgba(0, 0, 0, .56);
+}
+
+.pg-promo-gallery__lightbox[open] {
+    display: grid;
+    place-items: center;
+}
+
+.pg-promo-gallery__lightbox::backdrop {
+    background: rgba(5, 5, 5, .9);
+}
+
+.pg-promo-gallery__stage {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    place-items: center;
+}
+
+.pg-promo-gallery__stage img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.pg-promo-gallery__close {
+    position: absolute;
+    z-index: 2;
+    top: 18px;
+    right: 18px;
+    display: grid;
+    width: 44px;
+    height: 44px;
+    padding: 0 0 3px;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(254, 255, 254, .94);
+    color: var(--pg-black);
+    cursor: pointer;
+    font: 400 1.8rem/1 Arial, sans-serif;
+    transition: background-color .2s ease, transform .2s ease;
+}
+
+.pg-promo-gallery__close:hover,
+.pg-promo-gallery__close:focus-visible {
+    background: var(--pg-green);
+    outline: none;
+    transform: rotate(4deg);
+}
+
 @media (max-width: 840px) {
     .pg-promo__shell {
         grid-template-columns: 1fr auto;
@@ -645,6 +817,28 @@
     .pg-promo__action {
         width: 100%;
         justify-self: stretch;
+    }
+
+    .pg-promo-gallery {
+        padding: 24px 20px;
+        border-radius: 24px;
+    }
+
+    .pg-promo-gallery__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pg-promo-gallery__image-button {
+        aspect-ratio: 16 / 9;
+        border-radius: 18px;
+    }
+
+    .pg-promo-gallery__action {
+        width: 100%;
+    }
+
+    .pg-promo-gallery__lightbox {
+        border-radius: 18px;
     }
 }
 

@@ -18,6 +18,28 @@ class Progymorava_Child_Rental_Calculator_Fields {
 	 */
 	public static function init() {
 		add_action( 'acf/init', array( __CLASS__, 'register_fields' ) );
+		add_filter( 'acf/fields/relationship/query', array( __CLASS__, 'limit_gallery_media' ), 10, 3 );
+	}
+
+	/**
+	 * Limit the calculator gallery relationship field to image and video attachments.
+	 *
+	 * @param array $args     Relationship query arguments.
+	 * @param array $field    ACF field settings.
+	 * @param int   $post_id  Current post ID.
+	 * @return array
+	 */
+	public static function limit_gallery_media( $args, $field, $post_id ) {
+		$field_name = isset( $field['name'] ) ? (string) $field['name'] : '';
+
+		if ( 'rental_calc_gallery_media' !== $field_name ) {
+			return $args;
+		}
+
+		$args['post_type']      = array( 'attachment' );
+		$args['post_mime_type'] = array( 'image', 'video' );
+
+		return $args;
 	}
 
 	/**
@@ -103,6 +125,23 @@ class Progymorava_Child_Rental_Calculator_Fields {
 		$fields->field( 'saving_label', 'Popis úspory', 'rental_calc_saving_label', 'text', 'Vaša úspora' );
 		$fields->field( 'final_price_label', 'Popis výslednej ceny', 'rental_calc_final_price_label', 'text', 'Cena po zľave' );
 
+		$fields->tab( 'gallery_tab', 'Galéria' );
+		$fields->field( 'gallery_eyebrow', 'Malý nadpis', 'rental_calc_gallery_eyebrow', 'text', 'Galéria priestorov' );
+		$fields->field( 'gallery_title', 'Nadpis galérie', 'rental_calc_gallery_title', 'text', 'Pozrite si náš priestor' );
+		$fields->field(
+			'gallery_media',
+			'Obrázky a videá',
+			'rental_calc_gallery_media',
+			'relationship',
+			null,
+			array(
+				'post_type'     => array( 'attachment' ),
+				'filters'       => array( 'search' ),
+				'return_format' => 'object',
+				'instructions'  => 'Vyberte obrázky alebo videá z knižnice médií. Príspevky nie je možné vybrať.',
+			)
+		);
+
 		acf_add_local_field_group(
 			array(
 				'key'             => 'group_pg_rental_calculator_page',
@@ -116,7 +155,7 @@ class Progymorava_Child_Rental_Calculator_Fields {
 				'label_placement' => 'top',
 				'menu_order'      => 0,
 				'active'          => true,
-				'description'     => 'Polia pre texty, sadzby, tabuľku a výsledok kalkulačky prenájmu.',
+				'description'     => 'Polia pre texty, sadzby, tabuľku, výsledok a galériu kalkulačky prenájmu.',
 			)
 		);
 	}

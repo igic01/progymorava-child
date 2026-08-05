@@ -45,6 +45,7 @@ $theme_images_url     = get_stylesheet_directory_uri() . '/assets/images';
 			<a href="<?php echo esc_url( $home_url ); ?>">Domov</a>
 			<a href="<?php echo esc_url( home_url( '/o-nas/' ) ); ?>">O nás</a>
 			<a href="<?php echo esc_url( home_url( '/cennik/' ) ); ?>">Cenník</a>
+			<a href="https://progymorava.sk/calculator/">Kalkulačka prenájmu</a>
 			<a href="<?php echo esc_url( home_url( '/organizujeme/' ) ); ?>">Organizujeme</a>
 			<?php if ( $include_contact_link ) : ?>
 				<a href="<?php echo esc_url( home_url( '/kontakt/' ) ); ?>">Kontakt</a>

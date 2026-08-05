@@ -81,7 +81,7 @@ get_template_part(
 
 							<div class="pg-event-card__actions">
 								<a class="pg-button pg-button--check pg-arrow-button" href="<?php echo esc_url( get_permalink( $post_id ) ); ?>">
-									Check event <span aria-hidden="true">→</span>
+									Zobraziť udalosť <span aria-hidden="true">→</span>
 								</a>
 							</div>
 						</div>

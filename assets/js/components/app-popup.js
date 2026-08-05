@@ -34,7 +34,13 @@
     const downloadButton = layer.querySelector('[data-pg-app-download]');
     const storageKey = layer.dataset.storageKey || 'progymorava_app_popup_seen_v1';
 
-    if (!popup || !closeButton || !downloadButton || hasBeenSeen(storageKey)) {
+    if (!popup || !closeButton || !downloadButton) {
+      layer.remove();
+      return;
+    }
+
+    if (hasBeenSeen(storageKey)) {
+      layer.remove();
       return;
     }
 
@@ -47,8 +53,8 @@
     const closePopup = () => {
       layer.classList.remove('is-open');
       layer.setAttribute('aria-hidden', 'true');
-      layer.hidden = true;
       document.body.classList.remove('pg-app-popup-open');
+      layer.remove();
     };
 
     const keepFocusInside = (event) => {

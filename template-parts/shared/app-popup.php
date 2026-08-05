@@ -32,11 +32,16 @@ if ( ! $enabled ) {
 	return;
 }
 
+$storage_key = isset( $args['storage_key'] ) ? (string) $args['storage_key'] : 'progymorava_app_popup_seen_v1';
+
+if ( isset( $_COOKIE[ $storage_key ] ) && '1' === sanitize_text_field( wp_unslash( $_COOKIE[ $storage_key ] ) ) ) {
+	return;
+}
+
 $fallback_image = get_stylesheet_directory_uri() . '/assets/images/app-popup-screen.svg';
 $phone_image    = isset( $args['phone_image'] ) && is_array( $args['phone_image'] )
 	? $args['phone_image']
 	: progymorava_child_home_image( 'home_app_popup_phone_image', $fallback_image, 'Aplikácia ProGym Orava', $post_id );
-$storage_key    = isset( $args['storage_key'] ) ? (string) $args['storage_key'] : 'progymorava_app_popup_seen_v1';
 $eyebrow        = (string) $field( 'eyebrow', 'home_app_popup_eyebrow', 'ProGym vo vrecku' );
 $title_before   = (string) $field( 'title_before', 'home_app_popup_title_before', 'Tvoj tréning.' );
 $title_mark     = (string) $field( 'title_mark', 'home_app_popup_title_mark', 'Vždy poruke.' );

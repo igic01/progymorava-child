@@ -125,6 +125,17 @@ get_template_part(
 				</aside>
 			</section>
 		</div>
+
+		<div class="pg-calc__contact">
+			<a
+				class="pg-calc__contact-button"
+				href="<?php echo esc_url( progymorava_child_home_field( 'rental_calc_contact_button_url', 'https://www.google.com/' ) ); ?>"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				<?php echo esc_html( progymorava_child_home_field( 'rental_calc_contact_button_label', 'Kontaktujte nás' ) ); ?>
+			</a>
+		</div>
 	</section>
 
 	<?php if ( $gallery_items ) : ?>

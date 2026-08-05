@@ -345,6 +345,37 @@
   letter-spacing: -.06em;
 }
 
+.pg-calc__contact {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(28px, 4vw, 42px);
+  padding-top: clamp(24px, 3vw, 32px);
+  border-top: 1px solid rgba(5, 5, 5, .09);
+}
+
+.pg-calc__contact-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 24px;
+  border-radius: 999px;
+  background: var(--pg-green);
+  color: var(--pg-black);
+  font: 800 .78rem/1 "Poppins", sans-serif;
+  letter-spacing: .09em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color .22s ease, transform .22s ease;
+}
+
+.pg-calc__contact-button:hover,
+.pg-calc__contact-button:focus-visible {
+  background: #59f3ad;
+  outline: 0;
+  transform: translateY(-3px);
+}
+
 .pg-calc__gallery {
   width: min(1220px, calc(100% - 40px));
   margin: 0 auto 70px;
@@ -500,6 +531,10 @@
 
   .pg-calc__summary .pg-calc__summary-total strong {
     font-size: 1.75rem;
+  }
+
+  .pg-calc__contact-button {
+    width: 100%;
   }
 }
 

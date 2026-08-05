@@ -125,6 +125,8 @@ class Progymorava_Child_Rental_Calculator_Fields {
 		$fields->field( 'full_price_label', 'Popis ceny bez zľavy', 'rental_calc_full_price_label', 'text', 'Cena bez zľavy' );
 		$fields->field( 'saving_label', 'Popis úspory', 'rental_calc_saving_label', 'text', 'Vaša úspora' );
 		$fields->field( 'final_price_label', 'Popis výslednej ceny', 'rental_calc_final_price_label', 'text', 'Cena po zľave' );
+		$fields->field( 'contact_button_label', 'Text kontaktného tlačidla', 'rental_calc_contact_button_label', 'text', 'Kontaktujte nás' );
+		$fields->field( 'contact_button_url', 'URL kontaktného tlačidla', 'rental_calc_contact_button_url', 'url', 'https://www.google.com/' );
 
 		$fields->tab( 'gallery_tab', 'Galéria' );
 		$fields->field( 'gallery_eyebrow', 'Malý nadpis', 'rental_calc_gallery_eyebrow', 'text', 'Galéria priestorov' );

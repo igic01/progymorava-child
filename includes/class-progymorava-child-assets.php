@@ -18,8 +18,13 @@ class Progymorava_Child_Assets {
 	}
 
 	public static function enqueue_assets() {
+		wp_enqueue_style( 'progymorava-font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css', array(), '6.7.2' );
+
 		$main_stylesheet = '/assets/css/main.css';
 		wp_enqueue_style( 'progymorava-main', get_stylesheet_directory_uri() . $main_stylesheet, array(), self::version( $main_stylesheet ) );
+
+		$header_script = '/assets/js/components/site-header.js';
+		wp_enqueue_script( 'progymorava-site-header', get_stylesheet_directory_uri() . $header_script, array(), self::version( $header_script ), true );
 
 		$popup_stylesheet = '/assets/css/components/app-popup.css';
 		$popup_script     = '/assets/js/components/app-popup.js';
@@ -47,10 +52,6 @@ class Progymorava_Child_Assets {
 		if ( in_array( $template_name, array( 'template-home', 'template-aboutus', 'template-prices', 'template-events', 'template-contact', 'template-services', 'template-rental-calculator' ), true ) ) {
 			wp_enqueue_style( 'progymorava-google-fonts', 'https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Roboto:wght@400;500;700&display=swap', array(), null );
 		}
-		if ( 'template-home' === $template_name ) {
-			wp_enqueue_style( 'progymorava-font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css', array(), '6.7.2' );
-		}
-
 		$script = '/assets/js/templates/' . $template_name . '.js';
 		if ( file_exists( get_stylesheet_directory() . $script ) ) {
 			wp_enqueue_script(

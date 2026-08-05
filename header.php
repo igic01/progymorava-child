@@ -88,13 +88,25 @@ $show_app_stripe = is_page_template( array( 'templates/template-home.php', 'temp
 		</aside>
 	<?php endif; ?>
 
-	<header class="pg-header" id="pg-header">
+	<header class="pg-header" id="pg-header" data-site-header>
 		<div class="pg-header__shell">
 			<a class="pg-header__brand" href="<?php echo esc_url( $home_link ); ?>" aria-label="ProGym home">
 				<img class="pg-header__logo" src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/clear_logo.svg' ); ?>" alt="ProGym" />
 			</a>
 
-			<nav class="pg-header__nav" aria-label="Hlavná navigácia">
+			<button
+				class="pg-header__toggle"
+				type="button"
+				data-site-menu-toggle
+				aria-controls="pg-primary-navigation"
+				aria-expanded="false"
+				aria-label="Otvoriť menu"
+			>
+				<i class="fa-solid fa-bars pg-header__toggle-open" aria-hidden="true"></i>
+				<i class="fa-solid fa-xmark pg-header__toggle-close" aria-hidden="true"></i>
+			</button>
+
+			<nav class="pg-header__nav" id="pg-primary-navigation" data-site-menu aria-label="Hlavná navigácia">
 				<ul class="pg-header__menu">
 					<?php foreach ( $menu_items as $page_key => $menu_item ) : ?>
 						<li class="pg-header__item">

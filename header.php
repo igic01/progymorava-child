@@ -30,7 +30,7 @@ if ( is_singular( 'post' ) ) {
 } elseif ( is_page_template( array( 'templates/template-contact.php', 'template-contact.php' ) ) || is_page( 'kontakt' ) ) {
 	$body_classes[] = 'pg-contact-page';
 	$active_page    = 'kontakt';
-} elseif ( is_page_template( array( 'templates/template-rental-calculator.php', 'template-rental-calculator.php' ) ) || is_page( 'calculator' ) ) {
+} elseif ( is_page_template( array( 'templates/template-rental-calculator.php', 'template-rental-calculator.php' ) ) || is_page( 'prenajom' ) ) {
 	$body_classes[] = 'pg-rental-calculator-page';
 	$active_page    = 'prenajom';
 }
@@ -43,7 +43,7 @@ $menu_items = array(
 	'sluzby'       => array( 'label' => 'Služby', 'url' => home_url( '/sluzby/' ) ),
 	'organizujeme' => array( 'label' => 'Organizujeme', 'url' => home_url( '/organizujeme/' ) ),
 	'kontakt'      => array( 'label' => 'Kontakt', 'url' => home_url( '/kontakt/' ) ),
-	'prenajom'     => array( 'label' => 'Prenájom miestnosti', 'url' => 'https://progymorava.sk/calculator/' ),
+	'prenajom'     => array( 'label' => 'Prenájom miestnosti', 'url' => 'https://progymorava.sk/prenajom/' ),
 );
 
 $show_app_stripe = is_page_template( array( 'templates/template-home.php', 'template-home.php' ) )

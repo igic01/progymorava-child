@@ -261,9 +261,11 @@ body.pg-app-popup-open {
 
   .pg-app-popup {
     grid-template-columns: 1fr;
+    grid-template-rows: clamp(165px, 24dvh, 210px) auto;
     width: 100%;
     min-width: 0;
-    max-height: calc(100vh - 28px);
+    max-height: 90vh;
+    max-height: 90dvh;
     overflow-y: auto;
     border-radius: 28px;
   }
@@ -274,15 +276,16 @@ body.pg-app-popup-open {
   }
 
   .pg-app-popup__visual {
-    min-height: 230px;
-    padding: 26px;
+    height: 100%;
+    min-height: 0;
+    padding: 18px;
   }
 
   .pg-app-popup__phone {
-    width: 158px;
-    height: 310px;
-    margin-top: 88px;
-    border-radius: 32px;
+    width: 138px;
+    height: 270px;
+    margin-top: 76px;
+    border-radius: 29px;
     transform: rotate(-7deg);
   }
 
@@ -314,7 +317,9 @@ body.pg-app-popup-open {
   }
 
   .pg-app-popup {
-    max-height: calc(100vh - 16px);
+    grid-template-rows: clamp(150px, 22dvh, 185px) auto;
+    max-height: 90vh;
+    max-height: 90dvh;
     border-radius: 24px;
   }
 
@@ -324,11 +329,14 @@ body.pg-app-popup-open {
   }
 
   .pg-app-popup__visual {
-    min-height: 190px;
+    min-height: 0;
   }
 
   .pg-app-popup__phone {
-    margin-top: 118px;
+    width: 126px;
+    height: 248px;
+    margin-top: 88px;
+    border-radius: 27px;
   }
 
   .pg-app-popup__download {

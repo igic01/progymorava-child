@@ -829,7 +829,7 @@
 
 .pg-why {
     overflow: hidden;
-    padding: clamp(56px, 7vw, 90px) clamp(18px, 4vw, 36px);
+    padding: clamp(28px, 3.5vw, 45px) clamp(18px, 4vw, 36px);
     color: var(--pg-black);
 }
 

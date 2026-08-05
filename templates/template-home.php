@@ -258,7 +258,9 @@ get_template_part(
 
 			<article class="pg-promo-gallery" data-promo-gallery aria-labelledby="promo-gallery-title">
 				<div class="pg-promo-gallery__top">
+					<p class="pg-promo__eyebrow"><?php echo esc_html( progymorava_child_home_field( 'home_promo_gallery_eyebrow', 'ProGym v obrazoch' ) ); ?></p>
 					<h3 id="promo-gallery-title"><?php echo esc_html( progymorava_child_home_field( 'home_promo_gallery_title', 'Nahliadni do ProGym' ) ); ?></h3>
+					<p class="pg-promo-gallery__description"><?php echo nl2br( esc_html( progymorava_child_home_field( 'home_promo_gallery_description', 'Pozri si priestory, v ktorých môžeš každý deň pracovať na svojej sile, kondícii a zdraví.' ) ) ); ?></p>
 				</div>
 
 				<div class="pg-promo-gallery__grid">

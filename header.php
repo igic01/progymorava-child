@@ -27,12 +27,12 @@ if ( is_singular( 'post' ) ) {
 } elseif ( is_page_template( array( 'templates/template-events.php', 'template-events.php' ) ) || is_page( 'organizujeme' ) ) {
 	$body_classes[] = 'pg-events-page';
 	$active_page    = 'organizujeme';
-} elseif ( is_page_template( array( 'templates/template-contact.php', 'template-contact.php' ) ) || is_page( 'kontakt' ) ) {
-	$body_classes[] = 'pg-contact-page';
-	$active_page    = 'kontakt';
-} elseif ( is_page_template( array( 'templates/template-rental-calculator.php', 'template-rental-calculator.php' ) ) || is_page( 'prenajom' ) ) {
+}  elseif ( is_page_template( array( 'templates/template-rental-calculator.php', 'template-rental-calculator.php' ) ) || is_page( 'prenajom' ) ) {
 	$body_classes[] = 'pg-rental-calculator-page';
 	$active_page    = 'prenajom';
+}  elseif ( is_page_template( array( 'templates/template-contact.php', 'template-contact.php' ) ) || is_page( 'kontakt' ) ) {
+	$body_classes[] = 'pg-contact-page';
+	$active_page    = 'kontakt';
 }
 
 $home_link  = home_url( '/domov/' );
@@ -42,8 +42,8 @@ $menu_items = array(
 	'cennik'       => array( 'label' => 'Cenník', 'url' => home_url( '/cennik/' ) ),
 	'sluzby'       => array( 'label' => 'Služby', 'url' => home_url( '/sluzby/' ) ),
 	'organizujeme' => array( 'label' => 'Organizujeme', 'url' => home_url( '/organizujeme/' ) ),
-	'kontakt'      => array( 'label' => 'Kontakt', 'url' => home_url( '/kontakt/' ) ),
 	'prenajom'     => array( 'label' => 'Prenájom miestnosti', 'url' => 'https://progymorava.sk/prenajom/' ),
+	'kontakt'      => array( 'label' => 'Kontakt', 'url' => home_url( '/kontakt/' ) ),
 );
 
 $show_app_stripe = is_page_template( array( 'templates/template-home.php', 'template-home.php' ) )

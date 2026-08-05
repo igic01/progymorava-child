@@ -107,6 +107,41 @@ foreach ( $gallery_selection as $gallery_attachment ) {
 
 $hide_gallery = 1 === (int) progymorava_child_home_field( 'home_gallery_hide_section', 0 );
 
+$hide_app_stripe = 1 === (int) progymorava_child_home_field( 'home_app_stripe_hide', 0 );
+$app_stripe_text = (string) progymorava_child_home_field( 'home_app_stripe_text', 'Stiahni si našu aplikáciu a vychutnaj si progym na vlastnej koži' );
+$app_store_links = array(
+	array(
+		'class' => 'fa-apple',
+		'label' => 'Stiahnuť v App Store',
+		'url'   => progymorava_child_home_field( 'home_app_stripe_apple_url', 'https://apps.apple.com/us/app/progym-orava-z%C3%A1kamenn%C3%A9/id6791676566' ),
+	),
+	array(
+		'class' => 'fa-android',
+		'label' => 'Stiahnuť v Google Play',
+		'url'   => progymorava_child_home_field( 'home_app_stripe_android_url', 'https://play.google.com/store/apps/details?id=com.progymorava' ),
+	),
+);
+
+if ( ! $hide_app_stripe ) :
+	?>
+	<aside class="pg-app-stripe" aria-label="Aplikácia ProGym">
+		<div class="pg-app-stripe__inner">
+			<p class="pg-app-stripe__text"><?php echo esc_html( $app_stripe_text ); ?></p>
+			<div class="pg-app-stripe__stores" aria-label="Stiahnuť aplikáciu ProGym">
+				<?php foreach ( $app_store_links as $app_store_link ) : ?>
+					<?php if ( '' === trim( (string) $app_store_link['url'] ) ) : ?>
+						<?php continue; ?>
+					<?php endif; ?>
+					<a class="pg-app-stripe__store" href="<?php echo esc_url( $app_store_link['url'] ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( $app_store_link['label'] ); ?>">
+						<i class="fa-brands <?php echo esc_attr( $app_store_link['class'] ); ?>" aria-hidden="true"></i>
+					</a>
+				<?php endforeach; ?>
+			</div>
+		</div>
+	</aside>
+	<?php
+endif;
+
 get_template_part(
 	'template-parts/shared/site',
 	'header',

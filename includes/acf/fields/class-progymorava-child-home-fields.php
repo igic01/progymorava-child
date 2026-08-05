@@ -84,6 +84,22 @@ class Progymorava_Child_Home_Fields {
 		);
 		$default_url          = 'https://www.google.com/';
 
+		$fields->tab( 'app_stripe_tab', 'Lišta aplikácie' );
+		$fields->field(
+			'app_stripe_hide',
+			'Vypnúť lištu aplikácie',
+			'home_app_stripe_hide',
+			'true_false',
+			0,
+			array(
+				'ui'           => 1,
+				'instructions' => 'Po zapnutí sa lišta v hornej časti domovskej stránky nebude zobrazovať.',
+			)
+		);
+		$fields->field( 'app_stripe_text', 'Text lišty', 'home_app_stripe_text', 'text', 'Stiahni si našu aplikáciu a vychutnaj si progym na vlastnej koži' );
+		$fields->field( 'app_stripe_apple_url', 'Odkaz pre Apple', 'home_app_stripe_apple_url', 'url', 'https://apps.apple.com/us/app/progym-orava-z%C3%A1kamenn%C3%A9/id6791676566' );
+		$fields->field( 'app_stripe_android_url', 'Odkaz pre Android', 'home_app_stripe_android_url', 'url', 'https://play.google.com/store/apps/details?id=com.progymorava' );
+
 		$fields->tab( 'hero_tab', 'Hero' );
 		$fields->field( 'hero_hide_section', 'Hide this section', 'home_hero_hide_section', 'true_false', 0, array( 'ui' => 1 ) );
 		$fields->field( 'hero_image', 'Hero image', 'home_hero_image', 'image', $placeholder_image_id, $image_settings );

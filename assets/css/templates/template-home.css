@@ -7,6 +7,105 @@
     object-fit: cover;
 }
 
+.pg-app-stripe {
+    position: relative;
+    z-index: 20;
+    padding: 10px clamp(18px, 4vw, 36px);
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 12% 0%, rgba(32, 237, 140, .2), transparent 34%),
+        linear-gradient(100deg, #40275f 0%, var(--pg-purple) 52%, #312044 100%);
+    color: var(--pg-white);
+}
+
+.pg-app-stripe::after {
+    position: absolute;
+    inset: auto -4% -24px auto;
+    width: 190px;
+    height: 48px;
+    border: 1px solid rgba(32, 237, 140, .22);
+    border-radius: 50%;
+    content: "";
+    pointer-events: none;
+    transform: rotate(-8deg);
+}
+
+.pg-app-stripe__inner,
+.pg-app-stripe__stores,
+.pg-app-stripe__store {
+    display: flex;
+    align-items: center;
+}
+
+.pg-app-stripe__inner {
+    width: min(1220px, 100%);
+    min-height: 36px;
+    margin: 0 auto;
+    justify-content: center;
+    gap: clamp(16px, 3vw, 30px);
+}
+
+.pg-app-stripe__text {
+    margin: 0;
+    font: 700 clamp(.82rem, 1.5vw, .98rem)/1.35 "Poppins", sans-serif;
+    letter-spacing: -.01em;
+    text-align: center;
+}
+
+.pg-app-stripe__stores {
+    flex: 0 0 auto;
+    gap: 9px;
+}
+
+.pg-app-stripe__store {
+    width: 36px;
+    height: 36px;
+    justify-content: center;
+    border: 1px solid rgba(254, 255, 254, .3);
+    border-radius: 50%;
+    background: rgba(5, 5, 5, .22);
+    color: var(--pg-white);
+    text-decoration: none;
+    transition: color .2s ease, background-color .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.pg-app-stripe__store:hover,
+.pg-app-stripe__store:focus-visible {
+    border-color: var(--pg-green);
+    background: var(--pg-green);
+    color: var(--pg-black);
+    outline: none;
+    transform: translateY(-2px);
+}
+
+.pg-app-stripe__store i {
+    font-size: 1.15rem;
+    line-height: 1;
+}
+
+@media (max-width: 580px) {
+    .pg-app-stripe {
+        padding-block: 9px;
+    }
+
+    .pg-app-stripe__inner {
+        gap: 12px;
+    }
+
+    .pg-app-stripe__text {
+        text-align: left;
+    }
+
+    .pg-app-stripe__stores {
+        gap: 6px;
+    }
+
+    .pg-app-stripe__store {
+        width: 34px;
+        height: 34px;
+    }
+}
+
 .pg-hero {
     padding: clamp(56px, 7vw, 92px) clamp(18px, 4vw, 36px);
     color: var(--pg-black);

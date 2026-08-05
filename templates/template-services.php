@@ -100,7 +100,7 @@ get_template_part(
 								<img src="<?php echo esc_url( $coach['image']['url'] ); ?>" alt="<?php echo esc_attr( $coach['image']['alt'] ?: $coach['name'] ); ?>" />
 								<span class="pg-coach-card__shade"></span>
 								<span class="pg-coach-card__number"><?php echo esc_html( str_pad( (string) ( $index + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></span>
-								<span class="pg-coach-card__content"><span class="pg-coach-card__name"><?php echo esc_html( $coach['name'] ); ?></span><span class="pg-coach-card__role"><?php echo esc_html( $coach['role'] ); ?></span><span class="pg-coach-card__more">Zobraziť profil <b aria-hidden="true">&rarr;</b></span></span>
+								<span class="pg-coach-card__content"><span class="pg-coach-card__name"><?php echo esc_html( $coach['name'] ); ?></span><span class="pg-coach-card__role"><?php echo esc_html( $coach['role'] ); ?></span><span class="pg-coach-card__more">Zobraziť <b aria-hidden="true">&rarr;</b></span></span>
 								<span class="pg-coach-card__profile" hidden data-coach-profile data-role="<?php echo esc_attr( $coach['role'] ); ?>" data-specialty="<?php echo esc_attr( $coach['specialty'] ); ?>" data-bio="<?php echo esc_attr( $coach['bio'] ); ?>">
 									<?php foreach ( $coach['gallery'] as $gallery_item ) : ?>
 										<?php if ( 'video' === $gallery_item['type'] ) : ?>

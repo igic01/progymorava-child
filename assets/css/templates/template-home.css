@@ -602,3 +602,225 @@
     .pg-motivation__frame { min-height: 540px; border-radius: 28px; }
     .pg-motivation__quote { max-width: none; }
 }
+
+.pg-home-gallery {
+    padding: 20px clamp(18px, 4vw, 36px) clamp(70px, 8vw, 110px);
+}
+
+.pg-home-gallery *,
+.pg-home-gallery *::before,
+.pg-home-gallery *::after {
+    box-sizing: border-box;
+}
+
+.pg-home-gallery__shell {
+    width: min(1220px, 100%);
+    margin: 0 auto;
+}
+
+.pg-home-gallery__header {
+    margin-bottom: clamp(22px, 3vw, 34px);
+}
+
+.pg-home-gallery__header > p {
+    margin: 0 0 11px;
+    color: var(--pg-purple);
+    font: 700 .68rem/1 "Poppins", sans-serif;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+}
+
+.pg-home-gallery__header h2 {
+    max-width: 760px;
+    margin: 0;
+    color: var(--pg-black);
+    font: 800 clamp(1.8rem, 4vw, 3.35rem)/1.05 "Poppins", sans-serif;
+    letter-spacing: -.055em;
+}
+
+.pg-home-gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(13px, 2vw, 22px);
+}
+
+.pg-home-gallery__item {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: 24px;
+    background: #090909;
+    box-shadow: 0 18px 42px rgba(5, 5, 5, .13);
+    cursor: zoom-in;
+}
+
+.pg-home-gallery__item:focus-visible {
+    outline: 3px solid var(--pg-green);
+    outline-offset: 4px;
+}
+
+.pg-home-gallery__item img,
+.pg-home-gallery__item video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    transition: transform .25s ease;
+}
+
+.pg-home-gallery__item:hover img,
+.pg-home-gallery__item:hover video {
+    transform: scale(1.025);
+}
+
+.pg-home-gallery__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    width: 58px;
+    height: 58px;
+    place-items: center;
+    border-radius: 50%;
+    background: rgba(254, 255, 254, .92);
+    color: var(--pg-black);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .25);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.pg-home-gallery__play svg {
+    width: 24px;
+    height: 24px;
+    margin-left: 3px;
+}
+
+.pg-home-gallery__lightbox {
+    position: fixed;
+    inset: 0;
+    width: min(1180px, calc(100% - 24px));
+    height: min(820px, calc(100dvh - 24px));
+    max-width: none;
+    max-height: none;
+    margin: auto;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: 24px;
+    background: #080809;
+    box-shadow: 0 32px 90px rgba(0, 0, 0, .5);
+}
+
+.pg-home-gallery__lightbox[open] {
+    display: grid;
+    place-items: center;
+}
+
+.pg-home-gallery__lightbox::backdrop {
+    background: rgba(5, 5, 5, .88);
+}
+
+.pg-home-gallery__stage {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    place-items: center;
+}
+
+.pg-home-gallery__stage img,
+.pg-home-gallery__stage video {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.pg-home-gallery__stage [hidden] {
+    display: none;
+}
+
+.pg-home-gallery__close,
+.pg-home-gallery__nav {
+    position: absolute;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(254, 255, 254, .92);
+    color: var(--pg-black);
+    cursor: pointer;
+}
+
+.pg-home-gallery__close:hover,
+.pg-home-gallery__close:focus-visible,
+.pg-home-gallery__nav:hover,
+.pg-home-gallery__nav:focus-visible {
+    background: var(--pg-green);
+    outline: 0;
+}
+
+.pg-home-gallery__close {
+    top: 18px;
+    right: 18px;
+    width: 44px;
+    height: 44px;
+}
+
+.pg-home-gallery__nav {
+    top: 50%;
+    width: 48px;
+    height: 48px;
+    transform: translateY(-50%);
+}
+
+.pg-home-gallery__nav--previous {
+    left: 18px;
+}
+
+.pg-home-gallery__nav--next {
+    right: 18px;
+}
+
+.pg-home-gallery__nav[hidden] {
+    display: none;
+}
+
+.pg-home-gallery__close svg,
+.pg-home-gallery__nav svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2.5;
+}
+
+@media (max-width: 700px) {
+    .pg-home-gallery {
+        padding-right: 14px;
+        padding-left: 14px;
+    }
+
+    .pg-home-gallery__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pg-home-gallery__item,
+    .pg-home-gallery__lightbox {
+        border-radius: 20px;
+    }
+
+    .pg-home-gallery__nav {
+        top: auto;
+        bottom: 18px;
+        transform: none;
+    }
+}

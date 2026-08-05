@@ -75,6 +75,38 @@ $promo_price         = progymorava_child_home_field( 'home_promo_price', '90€'
 $promo_regular_label = progymorava_child_home_field( 'home_promo_regular_label', 'Regularly' );
 $promo_regular_price = progymorava_child_home_field( 'home_promo_regular_price', '115€' );
 
+$gallery_selection = (array) progymorava_child_home_field( 'home_gallery_media', array() );
+$gallery_items     = array();
+
+foreach ( $gallery_selection as $gallery_attachment ) {
+	$attachment_id = is_object( $gallery_attachment ) ? (int) $gallery_attachment->ID : (int) $gallery_attachment;
+	$mime_type     = (string) get_post_mime_type( $attachment_id );
+	$is_image      = 0 === strpos( $mime_type, 'image/' );
+	$is_video      = 0 === strpos( $mime_type, 'video/' );
+
+	if ( ! $attachment_id || ( ! $is_image && ! $is_video ) ) {
+		continue;
+	}
+
+	$media_url     = $is_image ? wp_get_attachment_image_url( $attachment_id, 'full' ) : wp_get_attachment_url( $attachment_id );
+	$media_url     = $media_url ?: wp_get_attachment_url( $attachment_id );
+	$thumbnail_url = $is_image ? wp_get_attachment_image_url( $attachment_id, 'large' ) : $media_url;
+	$thumbnail_url = $thumbnail_url ?: $media_url;
+
+	if ( ! $media_url || ! $thumbnail_url ) {
+		continue;
+	}
+
+	$gallery_items[] = array(
+		'type'          => $is_video ? 'video' : 'image',
+		'url'           => $media_url,
+		'thumbnail_url' => $thumbnail_url,
+		'alt'           => (string) get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ),
+	);
+}
+
+$hide_gallery = 1 === (int) progymorava_child_home_field( 'home_gallery_hide_section', 0 );
+
 get_template_part(
 	'template-parts/shared/site',
 	'header',
@@ -244,6 +276,59 @@ get_template_part(
 					</div>
 				</div>
 			</div>
+		</section>
+	<?php endif; ?>
+
+	<?php if ( ! $hide_gallery && $gallery_items ) : ?>
+		<section class="pg-home-gallery" data-home-gallery aria-labelledby="pg-home-gallery-title">
+			<div class="pg-home-gallery__shell">
+				<header class="pg-home-gallery__header">
+					<?php $gallery_eyebrow = (string) progymorava_child_home_field( 'home_gallery_eyebrow', 'Galéria' ); ?>
+					<?php if ( '' !== trim( $gallery_eyebrow ) ) : ?>
+						<p><?php echo esc_html( $gallery_eyebrow ); ?></p>
+					<?php endif; ?>
+					<h2 id="pg-home-gallery-title"><?php echo esc_html( progymorava_child_home_field( 'home_gallery_title', 'Pozrite si ProGym zblízka' ) ); ?></h2>
+				</header>
+
+				<div class="pg-home-gallery__grid">
+					<?php foreach ( $gallery_items as $gallery_index => $gallery_item ) : ?>
+						<button
+							class="pg-home-gallery__item pg-home-gallery__item--<?php echo esc_attr( $gallery_item['type'] ); ?>"
+							type="button"
+							data-home-gallery-item
+							data-media-type="<?php echo esc_attr( $gallery_item['type'] ); ?>"
+							data-media-url="<?php echo esc_url( $gallery_item['url'] ); ?>"
+							data-media-alt="<?php echo esc_attr( $gallery_item['alt'] ); ?>"
+							aria-label="<?php echo esc_attr( sprintf( 'Otvoriť %s galérie %d', 'video' === $gallery_item['type'] ? 'video' : 'obrázok', $gallery_index + 1 ) ); ?>"
+						>
+							<?php if ( 'video' === $gallery_item['type'] ) : ?>
+								<video muted playsinline preload="metadata" src="<?php echo esc_url( $gallery_item['thumbnail_url'] ); ?>" aria-hidden="true"></video>
+								<span class="pg-home-gallery__play" aria-hidden="true">
+									<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.14v13.72L19 12 8 5.14Z"></path></svg>
+								</span>
+							<?php else : ?>
+								<img src="<?php echo esc_url( $gallery_item['thumbnail_url'] ); ?>" alt="<?php echo esc_attr( $gallery_item['alt'] ); ?>" loading="lazy" decoding="async">
+							<?php endif; ?>
+						</button>
+					<?php endforeach; ?>
+				</div>
+			</div>
+
+			<dialog class="pg-home-gallery__lightbox" data-home-gallery-lightbox aria-label="Náhľad galérie">
+				<button class="pg-home-gallery__close" type="button" data-home-gallery-close aria-label="Zavrieť galériu">
+					<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"></path></svg>
+				</button>
+				<button class="pg-home-gallery__nav pg-home-gallery__nav--previous" type="button" data-home-gallery-previous aria-label="Predchádzajúce médium">
+					<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"></path></svg>
+				</button>
+				<div class="pg-home-gallery__stage">
+					<img data-home-gallery-image src="" alt="" hidden>
+					<video data-home-gallery-video controls playsinline preload="metadata" hidden></video>
+				</div>
+				<button class="pg-home-gallery__nav pg-home-gallery__nav--next" type="button" data-home-gallery-next aria-label="Nasledujúce médium">
+					<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"></path></svg>
+				</button>
+			</dialog>
 		</section>
 	<?php endif; ?>
 </main>

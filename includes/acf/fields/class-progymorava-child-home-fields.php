@@ -39,6 +39,26 @@ class Progymorava_Child_Home_Fields {
 	 */
 	public static function init() {
 		add_action( 'acf/init', array( __CLASS__, 'register_fields' ) );
+		add_filter( 'acf/fields/relationship/query', array( __CLASS__, 'limit_gallery_media' ), 10, 3 );
+	}
+
+	/**
+	 * Limit the home gallery selector to image and video attachments.
+	 *
+	 * @param array      $args    Relationship query arguments.
+	 * @param array      $field   ACF field settings.
+	 * @param string|int $post_id Edited post ID.
+	 * @return array
+	 */
+	public static function limit_gallery_media( $args, $field, $post_id ) {
+		$field_name = isset( $field['name'] ) ? (string) $field['name'] : '';
+
+		if ( 'home_gallery_media' === $field_name ) {
+			$args['post_type']      = array( 'attachment' );
+			$args['post_mime_type'] = array( 'image', 'video' );
+		}
+
+		return $args;
 	}
 
 	/**
@@ -137,6 +157,24 @@ class Progymorava_Child_Home_Fields {
 		$fields->field( 'motivation_button_label', 'Button label', 'home_motivation_button_label', 'text', 'Register now' );
 		$fields->field( 'motivation_button_url', 'Button URL', 'home_motivation_button_url', 'url', $default_url );
 		$fields->field( 'motivation_hint', 'Hint', 'home_motivation_hint', 'text', 'Your next level starts with one decision' );
+
+		$fields->tab( 'gallery_tab', 'Galéria' );
+		$fields->field( 'gallery_hide_section', 'Skryť túto sekciu', 'home_gallery_hide_section', 'true_false', 0, array( 'ui' => 1 ) );
+		$fields->field( 'gallery_eyebrow', 'Malý nadpis', 'home_gallery_eyebrow', 'text', 'Galéria' );
+		$fields->field( 'gallery_title', 'Nadpis galérie', 'home_gallery_title', 'text', 'Pozrite si ProGym zblízka' );
+		$fields->field(
+			'gallery_media',
+			'Obrázky a videá',
+			'home_gallery_media',
+			'relationship',
+			null,
+			array(
+				'post_type'     => array( 'attachment' ),
+				'filters'       => array( 'search' ),
+				'return_format' => 'object',
+				'instructions'  => 'Vyberte obrázky alebo videá z knižnice médií. Príspevky nie je možné vybrať.',
+			)
+		);
 
 		$fields->tab( 'app_popup_tab', 'Popup aplikácie' );
 		$fields->field(

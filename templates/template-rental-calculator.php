@@ -123,18 +123,18 @@ get_template_part(
 					<div><span><?php echo esc_html( progymorava_child_home_field( 'rental_calc_saving_label', 'Vaša úspora' ) ); ?></span><strong class="pg-calc__saving" id="pg-calc-saving">—</strong></div>
 					<div class="pg-calc__summary-total"><span><?php echo esc_html( progymorava_child_home_field( 'rental_calc_final_price_label', 'Cena po zľave' ) ); ?></span><strong id="pg-calc-final-price">—</strong></div>
 				</aside>
-			</section>
-		</div>
 
-		<div class="pg-calc__contact">
-			<a
-				class="pg-calc__contact-button"
-				href="<?php echo esc_url( progymorava_child_home_field( 'rental_calc_contact_button_url', 'https://www.google.com/' ) ); ?>"
-				target="_blank"
-				rel="noopener noreferrer"
-			>
-				<?php echo esc_html( progymorava_child_home_field( 'rental_calc_contact_button_label', 'Kontaktujte nás' ) ); ?>
-			</a>
+				<div class="pg-calc__contact">
+					<a
+						class="pg-calc__contact-button"
+						href="<?php echo esc_url( progymorava_child_home_field( 'rental_calc_contact_button_url', 'https://www.google.com/' ) ); ?>"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<?php echo esc_html( progymorava_child_home_field( 'rental_calc_contact_button_label', 'Kontaktujte nás' ) ); ?>
+					</a>
+				</div>
+			</section>
 		</div>
 	</section>
 

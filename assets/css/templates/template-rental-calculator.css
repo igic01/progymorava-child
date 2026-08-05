@@ -348,9 +348,7 @@
 .pg-calc__contact {
   display: flex;
   justify-content: center;
-  margin-top: clamp(28px, 4vw, 42px);
-  padding-top: clamp(24px, 3vw, 32px);
-  border-top: 1px solid rgba(5, 5, 5, .09);
+  margin-top: 18px;
 }
 
 .pg-calc__contact-button {
@@ -441,6 +439,11 @@
   .pg-calc__summary {
     margin-top: 0;
   }
+
+  .pg-calc__contact {
+    grid-column: 2;
+    margin-top: -6px;
+  }
 }
 
 @media (max-width: 700px) {
@@ -472,6 +475,11 @@
 
   .pg-calc__summary {
     margin-top: 20px;
+  }
+
+  .pg-calc__contact {
+    grid-column: 1;
+    margin-top: -6px;
   }
 
   .pg-calc__gallery {

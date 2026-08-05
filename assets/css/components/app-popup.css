@@ -286,7 +286,6 @@ body.pg-app-popup-open {
   .pg-app-popup__phone {
     width: 138px;
     height: 270px;
-    margin-top: 76px;
     border-radius: 29px;
     transform: rotate(-7deg);
   }

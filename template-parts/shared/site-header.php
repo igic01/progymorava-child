@@ -3,7 +3,7 @@
  * Shared public-site header.
  *
  * Expected arguments:
- * - active_page: domov, o-nas, cennik, sluzby, organizujeme, kontakt, or an empty string.
+ * - active_page: domov, o-nas, cennik, sluzby, organizujeme, kontakt, prenajom, or an empty string.
  *
  * @package Progymorava_Child
  */
@@ -19,6 +19,7 @@ $menu_items  = array(
 	'sluzby'       => array( 'label' => 'Služby', 'path' => '/sluzby/' ),
 	'organizujeme' => array( 'label' => 'Organizujeme', 'path' => '/organizujeme/' ),
 	'kontakt'      => array( 'label' => 'Kontakt', 'path' => '/kontakt/' ),
+	'prenajom'     => array( 'label' => 'Prenájom miestnosti', 'url' => 'https://progymorava.sk/calculator/' ),
 );
 ?>
 
@@ -31,8 +32,9 @@ $menu_items  = array(
 		<nav class="pg-header__nav" aria-label="Primary navigation">
 			<ul class="pg-header__menu">
 				<?php foreach ( $menu_items as $page_key => $menu_item ) : ?>
+					<?php $menu_url = isset( $menu_item['url'] ) ? $menu_item['url'] : home_url( $menu_item['path'] ); ?>
 					<li class="pg-header__item">
-						<a class="pg-header__link<?php echo $page_key === $active_page ? ' pg-header__link--active' : ''; ?>" href="<?php echo esc_url( home_url( $menu_item['path'] ) ); ?>"<?php echo $page_key === $active_page ? ' aria-current="page"' : ''; ?>><?php echo esc_html( $menu_item['label'] ); ?></a>
+						<a class="pg-header__link<?php echo $page_key === $active_page ? ' pg-header__link--active' : ''; ?>" href="<?php echo esc_url( $menu_url ); ?>"<?php echo $page_key === $active_page ? ' aria-current="page"' : ''; ?>><?php echo esc_html( $menu_item['label'] ); ?></a>
 					</li>
 				<?php endforeach; ?>
 			</ul>

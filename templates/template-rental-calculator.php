@@ -55,7 +55,7 @@ get_template_part(
 	'template-parts/shared/site',
 	'header',
 	array(
-		'active_page' => 'cennik',
+		'active_page' => 'prenajom',
 	)
 );
 ?>
@@ -77,7 +77,8 @@ get_template_part(
 		</div>
 	</section>
 
-	<section class="pg-calc__panel" aria-label="Kalkulačka prenájmu">
+	<section class="pg-calc__panel" aria-labelledby="pg-calc-intro-title">
+		<h2 class="pg-calc__intro-title" id="pg-calc-intro-title"><?php echo esc_html( progymorava_child_home_field( 'rental_calc_intro_title', 'Kalkulačka prenájmu' ) ); ?></h2>
 		<p class="pg-calc__intro"><?php echo nl2br( esc_html( progymorava_child_home_field( 'rental_calc_intro', 'Vyberte počet hodín za mesiac. Objemovú zľavu automaticky zarátame do výslednej ceny.' ) ) ); ?></p>
 
 		<div class="pg-calc__layout">

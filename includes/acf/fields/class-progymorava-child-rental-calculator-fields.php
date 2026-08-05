@@ -89,6 +89,7 @@ class Progymorava_Child_Rental_Calculator_Fields {
 		$fields->field( 'hero_description', 'Popis', 'rental_calc_hero_description', 'textarea', 'Jednoduchý prehľad ceny za priestor podľa času a počtu hodín, ktoré chcete rezervovať každý mesiac.', $textarea );
 
 		$fields->tab( 'rates_tab', 'Sadzby a zľavy' );
+		$fields->field( 'intro_title', 'Nadpis kalkulačky', 'rental_calc_intro_title', 'text', 'Kalkulačka prenájmu' );
 		$fields->field( 'intro', 'Úvodný text kalkulačky', 'rental_calc_intro', 'textarea', 'Vyberte počet hodín za mesiac. Objemovú zľavu automaticky zarátame do výslednej ceny.', $textarea );
 		$fields->field( 'off_tag', 'Názov sadzby mimo špičky', 'rental_calc_off_tag', 'text', 'Off-peak' );
 		$fields->field( 'off_rate', 'Cena za hodinu mimo špičky', 'rental_calc_off_rate', 'number', 10, array( 'min' => 0, 'step' => 0.01 ) );

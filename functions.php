@@ -22,6 +22,7 @@ require_once get_stylesheet_directory() . '/includes/acf/fields/class-progymorav
 require_once get_stylesheet_directory() . '/includes/acf/fields/class-progymorava-child-prices-fields.php';
 require_once get_stylesheet_directory() . '/includes/acf/fields/class-progymorava-child-events-fields.php';
 require_once get_stylesheet_directory() . '/includes/acf/fields/class-progymorava-child-services-fields.php';
+require_once get_stylesheet_directory() . '/includes/acf/fields/class-progymorava-child-rental-calculator-fields.php';
 
 require_once get_stylesheet_directory() . '/includes/pricing/class-progymorava-child-prices-faq.php';
 require_once get_stylesheet_directory() . '/includes/admin/class-progymorava-child-legacy-cleanup.php';

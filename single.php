@@ -41,8 +41,8 @@ $theme_images_url = get_stylesheet_directory_uri() . '/assets/images';
 	<main>
 		<section class="pg-event-hero" aria-labelledby="event-title">
 			<div class="pg-event-hero__shell">
-				<a class="pg-event-hero__back" href="<?php echo esc_url( home_url( '/events/' ) ); ?>">
-					<span aria-hidden="true">←</span> All events
+				<a class="pg-event-hero__back" href="<?php echo esc_url( 'https://progymorava.sk/organizujeme/' ); ?>">
+					<span aria-hidden="true">←</span> Organizujeme
 				</a>
 
 				<div class="pg-event-hero__photos">

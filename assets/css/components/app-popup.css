@@ -288,12 +288,12 @@ body.pg-app-popup-open {
     height: 270px;
     margin: 0;
     place-self: center;
-    border-radius: 29px;
+    border-radius: 24px;
     transform: rotate(-7deg);
   }
 
   .pg-app-popup__screen {
-    border-radius: 25px;
+    border-radius: 20px;
   }
 
   .pg-app-popup__speaker {
@@ -340,7 +340,11 @@ body.pg-app-popup-open {
   .pg-app-popup__phone {
     width: 126px;
     height: 248px;
-    border-radius: 27px;
+    border-radius: 22px;
+  }
+
+  .pg-app-popup__screen {
+    border-radius: 18px;
   }
 
   .pg-app-popup__download {

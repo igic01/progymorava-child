@@ -5,7 +5,7 @@
  * Optional arguments can override the Home-page ACF values:
  * - enabled: Whether the popup markup should be rendered.
  * - post_id: Post containing the ACF values.
- * - storage_key: Browser-storage key used for first-visit display.
+ * - storage_key: Browser-storage key used to remember an explicit dismissal.
  * - phone_image: Array with url and alt values.
  * - eyebrow, title_before, title_mark, description, button_label,
  *   google_url, apple_url, availability: Popup content.
@@ -32,7 +32,7 @@ if ( ! $enabled ) {
 	return;
 }
 
-$storage_key = isset( $args['storage_key'] ) ? (string) $args['storage_key'] : 'progymorava_app_popup_seen_v1';
+$storage_key = isset( $args['storage_key'] ) ? (string) $args['storage_key'] : 'progymorava_app_popup_dismissed_v2';
 
 if ( isset( $_COOKIE[ $storage_key ] ) && '1' === sanitize_text_field( wp_unslash( $_COOKIE[ $storage_key ] ) ) ) {
 	return;

@@ -6,7 +6,7 @@
     return document.cookie.split('; ').some((cookie) => cookie.startsWith(encodedKey));
   };
 
-  const hasBeenSeen = (key) => {
+  const hasBeenDismissed = (key) => {
     try {
       if (window.localStorage.getItem(key) === '1') {
         return true;
@@ -18,7 +18,7 @@
     return cookieHasKey(key);
   };
 
-  const rememberAsSeen = (key) => {
+  const rememberAsDismissed = (key) => {
     try {
       window.localStorage.setItem(key, '1');
     } catch (error) {
@@ -32,14 +32,14 @@
     const popup = layer.querySelector('.pg-app-popup');
     const closeButton = layer.querySelector('[data-pg-app-popup-close]');
     const downloadButton = layer.querySelector('[data-pg-app-download]');
-    const storageKey = layer.dataset.storageKey || 'progymorava_app_popup_seen_v1';
+    const storageKey = layer.dataset.storageKey || 'progymorava_app_popup_dismissed_v2';
 
     if (!popup || !closeButton || !downloadButton) {
       layer.remove();
       return;
     }
 
-    if (hasBeenSeen(storageKey)) {
+    if (hasBeenDismissed(storageKey)) {
       layer.remove();
       return;
     }
@@ -51,6 +51,7 @@
     downloadButton.href = isAppleDevice && appleUrl ? appleUrl : googleUrl;
 
     const closePopup = () => {
+      rememberAsDismissed(storageKey);
       layer.classList.remove('is-open');
       layer.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('pg-app-popup-open');
@@ -100,7 +101,6 @@
     layer.hidden = false;
     layer.setAttribute('aria-hidden', 'false');
     document.body.classList.add('pg-app-popup-open');
-    rememberAsSeen(storageKey);
 
     window.requestAnimationFrame(() => {
       layer.classList.add('is-open');

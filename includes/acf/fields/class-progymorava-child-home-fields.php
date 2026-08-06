@@ -200,7 +200,7 @@ class Progymorava_Child_Home_Fields {
 			)
 		);
 
-		$fields->tab( 'app_popup_tab', 'Popup aplikácie' );
+		$fields->tab( 'app_popup_tab', 'Popup aplikácie – texty a odkazy' );
 		$fields->field(
 			'app_popup_enabled',
 			'Zobraziť popup aplikácie',
@@ -209,14 +209,14 @@ class Progymorava_Child_Home_Fields {
 			1,
 			array(
 				'ui'           => 1,
-				'instructions' => 'Popup sa návštevníkovi zobrazí iba pri prvej návšteve domovskej stránky v danom prehliadači.',
+				'instructions' => 'Popup sa zobrazuje pri každom načítaní domovskej stránky, kým ho návštevník nezavrie krížikom, kliknutím mimo okna alebo klávesom Escape.',
 			)
 		);
 		$fields->field( 'app_popup_phone_image', 'Obrázok obrazovky telefónu', 'home_app_popup_phone_image', 'image', null, array_merge( $image_settings, array( 'instructions' => 'Použite zvislý obrázok alebo snímku obrazovky aplikácie.' ) ) );
-		$fields->field( 'app_popup_eyebrow', 'Malý nadpis', 'home_app_popup_eyebrow', 'text', 'ProGym vo vrecku' );
-		$fields->field( 'app_popup_title_before', 'Prvá časť nadpisu', 'home_app_popup_title_before', 'text', 'Tvoj tréning.' );
-		$fields->field( 'app_popup_title_mark', 'Zvýraznená časť nadpisu', 'home_app_popup_title_mark', 'text', 'Vždy poruke.' );
-		$fields->field( 'app_popup_description', 'Popis', 'home_app_popup_description', 'textarea', 'Stiahni si aplikáciu ProGym Orava a maj všetko potrebné pre svoj tréning pohodlne vo svojom mobile.', $textarea_settings );
+		$fields->field( 'app_popup_eyebrow', 'Text nad nadpisom', 'home_app_popup_eyebrow', 'text', 'ProGym vo vrecku', array( 'instructions' => 'Krátky text zobrazený nad hlavným nadpisom popupu.' ) );
+		$fields->field( 'app_popup_title_before', 'Hlavný nadpis', 'home_app_popup_title_before', 'text', 'Tvoj tréning.', array( 'instructions' => 'Prvá, čierna časť hlavného nadpisu.' ) );
+		$fields->field( 'app_popup_title_mark', 'Zvýraznená časť hlavného nadpisu', 'home_app_popup_title_mark', 'text', 'Vždy poruke.', array( 'instructions' => 'Druhá, farebne zvýraznená časť hlavného nadpisu.' ) );
+		$fields->field( 'app_popup_description', 'Popis pod nadpisom', 'home_app_popup_description', 'textarea', 'Stiahni si aplikáciu ProGym Orava a maj všetko potrebné pre svoj tréning pohodlne vo svojom mobile.', array_merge( $textarea_settings, array( 'instructions' => 'Text zobrazený priamo pod hlavným nadpisom.' ) ) );
 		$fields->field( 'app_popup_button_label', 'Text tlačidla', 'home_app_popup_button_label', 'text', 'Stiahnuť aplikáciu' );
 		$fields->field( 'app_popup_google_url', 'URL aplikácie v Google Play', 'home_app_popup_google_url', 'url', 'https://play.google.com/store/apps/details?id=com.progymorava' );
 		$fields->field( 'app_popup_apple_url', 'URL aplikácie v App Store', 'home_app_popup_apple_url', 'url', 'https://apps.apple.com/us/app/progym-orava-z%C3%A1kamenn%C3%A9/id6791676566' );

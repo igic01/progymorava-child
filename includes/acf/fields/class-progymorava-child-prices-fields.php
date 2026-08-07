@@ -29,6 +29,66 @@ class Progymorava_Child_Prices_Fields {
 	}
 
 	/**
+	 * Build the configurable service groups for the current prices page.
+	 *
+	 * The first two positions intentionally keep their legacy field names so
+	 * existing physiotherapy and nutrition-advice content remains connected.
+	 *
+	 * @return array<string,array<string,mixed>>
+	 */
+	public static function extra_groups() {
+		$default_titles = "Fyzioterapia\nVýživové poradenstvo";
+		$post_id        = Progymorava_Child_Acf_Page_Context::current_post_id();
+		$title_content  = $default_titles;
+
+		if ( $post_id && metadata_exists( 'post', $post_id, 'prices_extra_group_titles' ) ) {
+			$title_content = (string) get_post_meta( $post_id, 'prices_extra_group_titles', true );
+		}
+
+		$titles = array_values(
+			array_filter(
+				array_map( 'trim', preg_split( '/\R+/', $title_content ) ),
+				'strlen'
+			)
+		);
+		$groups = array();
+
+		foreach ( $titles as $index => $title ) {
+			if ( 0 === $index ) {
+				$key             = 'physio';
+				$field_prefix    = 'prices_physio';
+				$default_count   = 4;
+				$default_summary = 'Recovery and movement services.';
+				$default_chip    = 'Recovery';
+			} elseif ( 1 === $index ) {
+				$key             = 'nutrition_advisor';
+				$field_prefix    = 'prices_nutrition_advisor';
+				$default_count   = 3;
+				$default_summary = 'Diagnostics, consultations, and meal planning.';
+				$default_chip    = 'Nutrition';
+			} else {
+				$number          = $index + 1;
+				$key             = 'extra_group_' . $number;
+				$field_prefix    = 'prices_extra_group_' . $number;
+				$default_count   = 1;
+				$default_summary = '';
+				$default_chip    = '';
+			}
+
+			$groups[ $key ] = array(
+				'label'               => $title,
+				'field_prefix'        => $field_prefix,
+				'default_count'       => $default_count,
+				'default_description' => $default_summary,
+				'default_chip'        => $default_chip,
+				'is_plan'             => false,
+			);
+		}
+
+		return $groups;
+	}
+
+	/**
 	 * Register local ACF fields for the ProGym Prices template.
 	 *
 	 * @return void
@@ -57,19 +117,8 @@ class Progymorava_Child_Prices_Fields {
 				'default_count' => 5,
 				'is_plan'       => true,
 			),
-			'physio'            => array(
-				'label'         => 'Fyzioterapia',
-				'field_prefix'  => 'prices_physio',
-				'default_count' => 4,
-				'is_plan'       => false,
-			),
-			'nutrition_advisor' => array(
-				'label'         => 'Výživový poradca',
-				'field_prefix'  => 'prices_nutrition_advisor',
-				'default_count' => 3,
-				'is_plan'       => false,
-			),
 		);
+		$extra_groups = self::extra_groups();
 
 		$add_group_fields = static function ( $group_key, $group ) use ( $builder, $textarea, $default_url ) {
 			$builder->add_tab( $group_key . '_tab', $group['label'] );
@@ -79,13 +128,17 @@ class Progymorava_Child_Prices_Fields {
 				$builder->add_field( 'plans_title', 'Title', 'prices_plans_title', 'text', 'Choose your next level.' );
 				$builder->add_field( 'plans_description', 'Description', 'prices_plans_description', 'textarea', 'Flexible options for quick sessions, steady routines, or full-year consistency.', $textarea );
 			} elseif ( 'physio' === $group_key ) {
-				$builder->add_field( 'physio_section_title', 'Title', 'prices_physio_section_title', 'text', 'Fyzioterapia' );
-				$builder->add_field( 'physio_section_description', 'Description', 'prices_physio_section_description', 'textarea', 'Recovery and movement services.', $textarea );
-				$builder->add_field( 'physio_section_chip', 'Right-side label', 'prices_physio_section_chip', 'text', 'Recovery' );
+				$builder->add_field( 'physio_section_title', 'Title', 'prices_physio_section_title', 'text', $group['label'] );
+				$builder->add_field( 'physio_section_description', 'Description', 'prices_physio_section_description', 'textarea', $group['default_description'], $textarea );
+				$builder->add_field( 'physio_section_chip', 'Right-side label', 'prices_physio_section_chip', 'text', $group['default_chip'] );
 			} elseif ( 'nutrition_advisor' === $group_key ) {
-				$builder->add_field( 'advisor_section_title', 'Title', 'prices_nutrition_advisor_section_title', 'text', 'Výživový poradca' );
-				$builder->add_field( 'advisor_section_description', 'Description', 'prices_nutrition_advisor_section_description', 'textarea', 'Diagnostics, consultations, and meal planning.', $textarea );
-				$builder->add_field( 'advisor_section_chip', 'Right-side label', 'prices_nutrition_advisor_section_chip', 'text', 'Nutrition' );
+				$builder->add_field( 'advisor_section_title', 'Title', 'prices_nutrition_advisor_section_title', 'text', $group['label'] );
+				$builder->add_field( 'advisor_section_description', 'Description', 'prices_nutrition_advisor_section_description', 'textarea', $group['default_description'], $textarea );
+				$builder->add_field( 'advisor_section_chip', 'Right-side label', 'prices_nutrition_advisor_section_chip', 'text', $group['default_chip'] );
+			} else {
+				$builder->add_field( $group_key . '_section_title', 'Title', $group['field_prefix'] . '_section_title', 'text', $group['label'] );
+				$builder->add_field( $group_key . '_section_description', 'Description', $group['field_prefix'] . '_section_description', 'textarea', $group['default_description'], $textarea );
+				$builder->add_field( $group_key . '_section_chip', 'Right-side label', $group['field_prefix'] . '_section_chip', 'text', $group['default_chip'] );
 			}
 
 			$count_name = $group['field_prefix'] . '_count';
@@ -144,8 +197,23 @@ class Progymorava_Child_Prices_Fields {
 		$builder->add_field( 'trainer_apple_label', 'App Store label', 'prices_trainer_apple_label', 'text', 'App Store' );
 		$builder->add_field( 'trainer_apple_url', 'App Store URL', 'prices_trainer_apple_url', 'url', 'https://apps.apple.com/us/app/progym-orava-z%C3%A1kamenn%C3%A9/id6791676566' );
 
-		$add_group_fields( 'physio', $groups['physio'] );
-		$add_group_fields( 'nutrition_advisor', $groups['nutrition_advisor'] );
+		$builder->add_tab( 'extra_groups_tab', 'Sekcie služieb' );
+		$builder->add_field(
+			'extra_group_titles',
+			'Názvy sekcií',
+			'prices_extra_group_titles',
+			'textarea',
+			"Fyzioterapia\nVýživové poradenstvo",
+			array(
+				'rows'         => 6,
+				'new_lines'    => '',
+				'instructions' => 'Zadajte jeden názov sekcie na riadok. Po zmene stránku uložte a obnovte editor.',
+			)
+		);
+
+		foreach ( $extra_groups as $group_key => $group ) {
+			$add_group_fields( $group_key, $group );
+		}
 
 		$builder->add_tab( 'nutrition_cooperation_tab', 'Nutrition cooperation' );
 		$builder->add_field( 'nutrition_eyebrow', 'Eyebrow', 'prices_nutrition_eyebrow', 'text', 'Recommendation' );

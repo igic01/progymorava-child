@@ -12,8 +12,7 @@ get_header();
 
 $theme_images_url = get_stylesheet_directory_uri() . '/assets/images';
 $plan_count       = Progymorava_Child_Prices_Fields::current_page_count( 'prices_plan_count', 5 );
-$physio_count     = Progymorava_Child_Prices_Fields::current_page_count( 'prices_physio_count', 4 );
-$advisor_count    = Progymorava_Child_Prices_Fields::current_page_count( 'prices_nutrition_advisor_count', 3 );
+$extra_groups     = Progymorava_Child_Prices_Fields::extra_groups();
 $faq_groups       = Progymorava_Child_Prices_FAQ::parse( progymorava_child_home_field( 'prices_faq_content', '' ) );
 $faq_columns      = ! empty( $faq_groups ) ? array_chunk( $faq_groups, (int) ceil( count( $faq_groups ) / 2 ) ) : array();
 $multisport_image = progymorava_child_home_image( 'prices_multisport_image', $theme_images_url . '/placeholder.jpg', 'MultiSport card training at ProGym' );
@@ -169,53 +168,35 @@ foreach ( $nutrition_plan_defaults as $index => $defaults ) {
 	<section class="pg-extra-section" id="services">
 		<div class="pg-extra-shell">
 			<div class="pg-extra-groups">
-				<section class="pg-extra-group">
-					<div class="pg-extra-group-head">
-						<div>
-							<h2 class="pg-extra-group-title"><?php echo esc_html( progymorava_child_home_field( 'prices_physio_section_title', 'Fyzioterapia' ) ); ?></h2>
-							<p class="pg-extra-group-text"><?php echo nl2br( esc_html( progymorava_child_home_field( 'prices_physio_section_description', 'Recovery and movement services.' ) ) ); ?></p>
-						</div>
-						<span class="pg-extra-chip"><?php echo esc_html( progymorava_child_home_field( 'prices_physio_section_chip', 'Recovery' ) ); ?></span>
-					</div>
-
-					<div class="pg-extra-items">
-						<?php for ( $index = 1; $index <= $physio_count; $index++ ) : ?>
-							<?php $prefix = 'prices_physio_' . $index; ?>
-							<div class="pg-extra-item">
-								<div>
-									<h3 class="pg-extra-item-title"><?php echo esc_html( progymorava_child_home_field( $prefix . '_title', 'Title' ) ); ?></h3>
-									<p class="pg-extra-item-text"><?php echo esc_html( progymorava_child_home_field( $prefix . '_description', 'Description' ) ); ?></p>
-								</div>
-								<div class="pg-extra-price"><?php echo esc_html( progymorava_child_home_field( $prefix . '_price', 'Price' ) ); ?></div>
-								<a class="pg-extra-action" href="<?php echo esc_url( progymorava_child_home_field( $prefix . '_action_url', 'https://www.google.com/' ) ); ?>"><?php echo esc_html( progymorava_child_home_field( $prefix . '_action_label', 'Action label' ) ); ?></a>
+				<?php foreach ( $extra_groups as $extra_group ) : ?>
+					<?php
+					$group_prefix = $extra_group['field_prefix'];
+					$item_count   = Progymorava_Child_Prices_Fields::current_page_count( $group_prefix . '_count', $extra_group['default_count'] );
+					?>
+					<section class="pg-extra-group">
+						<div class="pg-extra-group-head">
+							<div>
+								<h2 class="pg-extra-group-title"><?php echo esc_html( progymorava_child_home_field( $group_prefix . '_section_title', $extra_group['label'] ) ); ?></h2>
+								<p class="pg-extra-group-text"><?php echo nl2br( esc_html( progymorava_child_home_field( $group_prefix . '_section_description', $extra_group['default_description'] ) ) ); ?></p>
 							</div>
-						<?php endfor; ?>
-					</div>
-				</section>
-
-				<section class="pg-extra-group">
-					<div class="pg-extra-group-head">
-						<div>
-							<h2 class="pg-extra-group-title"><?php echo esc_html( progymorava_child_home_field( 'prices_nutrition_advisor_section_title', 'Výživový poradca' ) ); ?></h2>
-							<p class="pg-extra-group-text"><?php echo nl2br( esc_html( progymorava_child_home_field( 'prices_nutrition_advisor_section_description', 'Diagnostics, consultations, and meal planning.' ) ) ); ?></p>
+							<span class="pg-extra-chip"><?php echo esc_html( progymorava_child_home_field( $group_prefix . '_section_chip', $extra_group['default_chip'] ) ); ?></span>
 						</div>
-						<span class="pg-extra-chip"><?php echo esc_html( progymorava_child_home_field( 'prices_nutrition_advisor_section_chip', 'Nutrition' ) ); ?></span>
-					</div>
 
-					<div class="pg-extra-items">
-						<?php for ( $index = 1; $index <= $advisor_count; $index++ ) : ?>
-							<?php $prefix = 'prices_nutrition_advisor_' . $index; ?>
-							<div class="pg-extra-item">
-								<div>
-									<h3 class="pg-extra-item-title"><?php echo esc_html( progymorava_child_home_field( $prefix . '_title', 'Title' ) ); ?></h3>
-									<p class="pg-extra-item-text"><?php echo esc_html( progymorava_child_home_field( $prefix . '_description', 'Description' ) ); ?></p>
+						<div class="pg-extra-items">
+							<?php for ( $index = 1; $index <= $item_count; $index++ ) : ?>
+								<?php $prefix = $group_prefix . '_' . $index; ?>
+								<div class="pg-extra-item">
+									<div>
+										<h3 class="pg-extra-item-title"><?php echo esc_html( progymorava_child_home_field( $prefix . '_title', 'Title' ) ); ?></h3>
+										<p class="pg-extra-item-text"><?php echo esc_html( progymorava_child_home_field( $prefix . '_description', 'Description' ) ); ?></p>
+									</div>
+									<div class="pg-extra-price"><?php echo esc_html( progymorava_child_home_field( $prefix . '_price', 'Price' ) ); ?></div>
+									<a class="pg-extra-action" href="<?php echo esc_url( progymorava_child_home_field( $prefix . '_action_url', 'https://www.google.com/' ) ); ?>"><?php echo esc_html( progymorava_child_home_field( $prefix . '_action_label', 'Action label' ) ); ?></a>
 								</div>
-								<div class="pg-extra-price"><?php echo esc_html( progymorava_child_home_field( $prefix . '_price', 'Price' ) ); ?></div>
-								<a class="pg-extra-action" href="<?php echo esc_url( progymorava_child_home_field( $prefix . '_action_url', 'https://www.google.com/' ) ); ?>"><?php echo esc_html( progymorava_child_home_field( $prefix . '_action_label', 'Action label' ) ); ?></a>
-							</div>
-						<?php endfor; ?>
-					</div>
-				</section>
+							<?php endfor; ?>
+						</div>
+					</section>
+				<?php endforeach; ?>
 			</div>
 		</div>
 	</section>

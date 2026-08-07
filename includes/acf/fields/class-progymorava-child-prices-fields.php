@@ -71,7 +71,7 @@ class Progymorava_Child_Prices_Fields {
 			),
 		);
 
-		foreach ( $groups as $group_key => $group ) {
+		$add_group_fields = static function ( $group_key, $group ) use ( $builder, $textarea, $default_url ) {
 			$builder->add_tab( $group_key . '_tab', $group['label'] );
 
 			if ( 'plans' === $group_key ) {
@@ -122,7 +122,9 @@ class Progymorava_Child_Prices_Fields {
 					$builder->add_field( $prefix . '_action_url', 'Item ' . $index . ' action URL', $prefix . '_action_url', 'url', $default_url );
 				}
 			}
-		}
+		};
+
+		$add_group_fields( 'plans', $groups['plans'] );
 
 		$builder->add_tab( 'multisport_tab', 'MultiSport' );
 		$builder->add_field( 'multisport_hide_section', 'Hide this section', 'prices_multisport_hide_section', 'true_false', 0, array( 'ui' => 1 ) );
@@ -141,6 +143,9 @@ class Progymorava_Child_Prices_Fields {
 		$builder->add_field( 'trainer_apple_small_label', 'App Store small label', 'prices_trainer_apple_small_label', 'text', 'Download on the' );
 		$builder->add_field( 'trainer_apple_label', 'App Store label', 'prices_trainer_apple_label', 'text', 'App Store' );
 		$builder->add_field( 'trainer_apple_url', 'App Store URL', 'prices_trainer_apple_url', 'url', 'https://apps.apple.com/us/app/progym-orava-z%C3%A1kamenn%C3%A9/id6791676566' );
+
+		$add_group_fields( 'physio', $groups['physio'] );
+		$add_group_fields( 'nutrition_advisor', $groups['nutrition_advisor'] );
 
 		$builder->add_tab( 'nutrition_cooperation_tab', 'Nutrition cooperation' );
 		$builder->add_field( 'nutrition_eyebrow', 'Eyebrow', 'prices_nutrition_eyebrow', 'text', 'Recommendation' );

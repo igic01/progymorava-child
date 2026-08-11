@@ -51,13 +51,17 @@ for ( $index = 1; $index <= $coach_count; $index++ ) {
 }
 
 for ( $index = 1; $index <= $physio_count; $index++ ) {
+	$phone      = (string) progymorava_child_home_field( 'services_physio_' . $index . '_phone', '' );
+	$phone_href = preg_replace( '/[^0-9+]/', '', $phone );
+
 	$physios[] = array(
-		'image'     => progymorava_child_home_image( 'services_physio_' . $index . '_image', $placeholder_url, 'ProGym physiotherapist' ),
-		'name'      => progymorava_child_home_field( 'services_physio_' . $index . '_name', 'Physiotherapist' ),
-		'role'      => progymorava_child_home_field( 'services_physio_' . $index . '_role', 'Specialty' ),
-		'facebook'  => progymorava_child_home_field( 'services_physio_' . $index . '_facebook', '' ),
-		'instagram' => progymorava_child_home_field( 'services_physio_' . $index . '_instagram', '' ),
-		'phone'     => progymorava_child_home_field( 'services_physio_' . $index . '_phone', '' ),
+		'image'      => progymorava_child_home_image( 'services_physio_' . $index . '_image', $placeholder_url, 'ProGym physiotherapist' ),
+		'name'       => progymorava_child_home_field( 'services_physio_' . $index . '_name', 'Physiotherapist' ),
+		'role'       => progymorava_child_home_field( 'services_physio_' . $index . '_role', 'Specialty' ),
+		'facebook'   => progymorava_child_home_field( 'services_physio_' . $index . '_facebook', '' ),
+		'instagram'  => progymorava_child_home_field( 'services_physio_' . $index . '_instagram', '' ),
+		'phone'      => $phone,
+		'phone_href' => $phone_href,
 	);
 }
 
@@ -119,7 +123,7 @@ for ( $index = 1; $index <= $physio_count; $index++ ) {
 			<div class="pg-physio__shell">
 				<div class="pg-physio__intro"><p class="pg-physio__eyebrow"><?php echo esc_html( progymorava_child_home_field( 'services_physio_eyebrow', 'Move with confidence' ) ); ?></p><h2 id="physio-title"><?php echo esc_html( progymorava_child_home_field( 'services_physio_title', 'Physio' ) ); ?><span><?php echo esc_html( progymorava_child_home_field( 'services_physio_title_accent', 'therapy' ) ); ?></span></h2><p><?php echo nl2br( esc_html( progymorava_child_home_field( 'services_physio_lead', 'Focused care for recovery, mobility, and feeling strong in your everyday movement.' ) ) ); ?></p></div>
 				<?php if ( ! empty( $physios ) ) : ?><div class="pg-physio__team" aria-label="Physiotherapy team">
-					<?php foreach ( $physios as $person ) : ?><article class="pg-physio__person"><img src="<?php echo esc_url( $person['image']['url'] ); ?>" alt="<?php echo esc_attr( $person['image']['alt'] ?: $person['name'] ); ?>" /><div class="pg-physio__shade"></div><div class="pg-physio__content"><h3><?php echo esc_html( $person['name'] ); ?></h3><p><?php echo esc_html( $person['role'] ); ?></p><div class="pg-physio__socials" aria-label="Contact <?php echo esc_attr( $person['name'] ); ?>"><?php if ( $person['facebook'] ) : ?><a href="<?php echo esc_url( $person['facebook'] ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( $person['name'] ); ?> on Facebook">f</a><?php endif; ?><?php if ( $person['instagram'] ) : ?><a href="<?php echo esc_url( $person['instagram'] ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( $person['name'] ); ?> on Instagram">ig</a><?php endif; ?><?php if ( $person['phone'] ) : ?><a href="<?php echo esc_url( $person['phone'] ); ?>" aria-label="Call <?php echo esc_attr( $person['name'] ); ?>">&#9742;</a><?php endif; ?></div></div></article><?php endforeach; ?>
+					<?php foreach ( $physios as $person ) : ?><article class="pg-physio__person"><img src="<?php echo esc_url( $person['image']['url'] ); ?>" alt="<?php echo esc_attr( $person['image']['alt'] ?: $person['name'] ); ?>" /><div class="pg-physio__shade"></div><div class="pg-physio__content"><h3><?php echo esc_html( $person['name'] ); ?></h3><p><?php echo esc_html( $person['role'] ); ?></p><div class="pg-physio__socials" aria-label="Contact <?php echo esc_attr( $person['name'] ); ?>"><?php if ( $person['facebook'] ) : ?><a href="<?php echo esc_url( $person['facebook'] ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( $person['name'] ); ?> on Facebook">f</a><?php endif; ?><?php if ( $person['instagram'] ) : ?><a href="<?php echo esc_url( $person['instagram'] ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( $person['name'] ); ?> on Instagram">ig</a><?php endif; ?><?php if ( $person['phone_href'] ) : ?><a href="tel:<?php echo esc_attr( $person['phone_href'] ); ?>" aria-label="Call <?php echo esc_attr( $person['name'] ); ?>">&#9742;</a><?php endif; ?></div></div></article><?php endforeach; ?>
 				</div><?php endif; ?>
 			</div>
 		</section>

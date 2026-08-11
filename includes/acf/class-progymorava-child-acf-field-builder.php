@@ -233,7 +233,7 @@ class Progymorava_Child_Acf_Field_Builder {
 			'/^Physiotherapist (\d+) specialty$/'       => 'Fyzioterapeut $1 – špecializácia',
 			'/^Physiotherapist (\d+) Facebook URL$/'    => 'Fyzioterapeut $1 – URL Facebooku',
 			'/^Physiotherapist (\d+) Instagram URL$/'   => 'Fyzioterapeut $1 – URL Instagramu',
-			'/^Physiotherapist (\d+) phone URL$/'       => 'Fyzioterapeut $1 – URL telefónu',
+			'/^Physiotherapist (\d+) phone$/'           => 'Fyzioterapeut $1 – telefónne číslo',
 			'/^Timeline item (\d+) image$/'              => 'Položka časovej osi $1 – obrázok',
 			'/^Timeline item (\d+) year$/'               => 'Položka časovej osi $1 – rok',
 			'/^Timeline item (\d+) short label$/'        => 'Položka časovej osi $1 – krátky popis',

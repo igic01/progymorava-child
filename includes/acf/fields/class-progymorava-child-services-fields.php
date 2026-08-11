@@ -124,7 +124,7 @@ class Progymorava_Child_Services_Fields {
 			$fields->field( 'physio_' . $number . '_role', 'Physiotherapist ' . $number . ' specialty', 'services_physio_' . $number . '_role', 'text', $default[1] );
 			$fields->field( 'physio_' . $number . '_facebook', 'Physiotherapist ' . $number . ' Facebook URL', 'services_physio_' . $number . '_facebook', 'url' );
 			$fields->field( 'physio_' . $number . '_instagram', 'Physiotherapist ' . $number . ' Instagram URL', 'services_physio_' . $number . '_instagram', 'url' );
-			$fields->field( 'physio_' . $number . '_phone', 'Physiotherapist ' . $number . ' phone URL', 'services_physio_' . $number . '_phone', 'url' );
+			$fields->field( 'physio_' . $number . '_phone', 'Physiotherapist ' . $number . ' phone', 'services_physio_' . $number . '_phone', 'text' );
 		}
 
 		$fields->tab( 'prices_cta_tab', 'Price list call to action' );
